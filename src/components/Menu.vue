@@ -1,11 +1,18 @@
+<!-- Menu component -->
 <template>
     <div class="menu">
         <div class="menuContent">
             <router-link to="/" class="menuTitle">LaunchInfo</router-link>
             <div class="menuLinks">
-                <router-link to="/" class="menuButton">Agencies</router-link>
-                <router-link to="/" class="menuButton">Rockets</router-link>
-                <router-link to="/" class="menuButton">Launches</router-link>
+                <router-link to="/agencies" class="menuButton"
+                    >Agencies</router-link
+                >
+                <router-link to="/rockets" class="menuButton"
+                    >Rockets</router-link
+                >
+                <router-link to="/launches" class="menuButton"
+                    >Launches</router-link
+                >
             </div>
         </div>
     </div>
@@ -27,7 +34,7 @@ export default {
 .menuContent {
     height: 100%;
     width: 80%;
-    max-width: 1110px;
+    max-width: var(--page-width);
     margin: auto;
     display: flex;
     align-items: center;

@@ -31,5 +31,6 @@ body {
 /* Variables */
 :root {
     --text-color: #141414;
+    --page-width: 1110px;
 }
 </style>

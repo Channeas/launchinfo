@@ -1,3 +1,4 @@
+<!-- Landing page component -->
 <template>
     <div class="home"></div>
 </template>

@@ -5,10 +5,53 @@ import Home from "../views/Home.vue";
 Vue.use(VueRouter);
 
 const routes = [
+    // The landing page
     {
         path: "/",
         name: "Home",
         component: Home
+    },
+
+    // The list of agencies
+    {
+        path: "/agencies",
+        name: "Agencies",
+        component: () => import("@/views/Agencies.vue")
+    },
+
+    // The details of a single agency
+    {
+        path: "/agencies/:agencyId",
+        name: "Agency",
+        component: () => import("@/views/Agency.vue")
+    },
+
+    // The list of rockets
+    {
+        path: "/rockets",
+        name: "Rockets",
+        component: () => import("@/views/Rockets.vue")
+    },
+
+    // A single rocket
+    {
+        path: "/rockets/:rocketId",
+        name: "Rocket",
+        component: () => import("@/views/Rocket.vue")
+    },
+
+    // The list of launches
+    {
+        path: "/launches",
+        name: "Launches",
+        component: () => import("@/views/Launches.vue")
+    },
+
+    // A single launch
+    {
+        path: "/launches/:launchId",
+        name: "Launch",
+        component: () => import("@/views/Launch.vue")
     }
 ];
 
