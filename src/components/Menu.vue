@@ -33,9 +33,9 @@ export default {
 
 .menuContent {
     height: 100%;
-    width: 80%;
-    max-width: var(--page-width);
-    margin: auto;
+    width: var(--page-width);
+    max-width: var(--page-max-width);
+    margin: var(--page-margin);
     display: flex;
     align-items: center;
     justify-content: space-between;

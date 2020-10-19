@@ -13,8 +13,8 @@ export default {
 
 <style>
 .viewBody {
-    width: 80%;
-    max-width: var(--page-width);
-    margin: auto;
+    width: var(--page-width);
+    max-width: var(--page-max-width);
+    margin: var(--page-margin);
 }
 </style>

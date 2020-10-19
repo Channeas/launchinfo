@@ -20,7 +20,9 @@ export default {
 /* Variables */
 :root {
     --text-color: #141414;
-    --page-width: 1110px;
+    --page-width: 80%;
+    --page-max-width: 1110px;
+    --page-margin: auto;
 }
 
 /* Styling */
@@ -34,5 +36,19 @@ body {
     width: 100%;
     background-color: #f5f5f5;
     color: var(--text-color);
+}
+
+/* Responsiveness */
+@media (max-width: 550px) {
+    :root {
+        --page-width: unset;
+        --page-margin: 0 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --page-margin: 0 20px;
+    }
 }
 </style>
