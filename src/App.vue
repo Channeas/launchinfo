@@ -17,20 +17,22 @@ export default {
 </script>
 
 <style>
+/* Variables */
+:root {
+    --text-color: #141414;
+    --page-width: 1110px;
+}
+
+/* Styling */
 body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
 }
 
 #app {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background-color: #f5f5f5;
-}
-
-/* Variables */
-:root {
-    --text-color: #141414;
-    --page-width: 1110px;
+    color: var(--text-color);
 }
 </style>
