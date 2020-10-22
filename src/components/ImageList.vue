@@ -30,13 +30,13 @@ export default {
 <style>
 .imageList {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 45px;
 }
 
 @media (max-width: 1180px) {
     .imageList {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .imageList > .imageListItem {
@@ -62,7 +62,7 @@ export default {
 
 @media (max-width: 775px) {
     .imageList {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
     }
 
