@@ -11,6 +11,8 @@ export default class DataManager {
                 return this._getLaunches(route);
             case "Launch":
                 return this._getSingleLaunch(route);
+            case "Rockets":
+                return this._getRockets(route);
         }
     }
 
@@ -77,6 +79,41 @@ export default class DataManager {
                 { rowData: ["Mission type:", "Communications"] },
                 { rowData: ["Window start:", "2020-10-03T12:34:00Z"] },
                 { rowData: ["Window end:", "2020-10-03T12:34:00Z"] }
+            ]
+        };
+    }
+
+    // Function that returns a list of rockets
+    _getRockets(route) {
+        console.log(route);
+
+        return {
+            urlPrefix: "/rockets/",
+            items: [
+                {
+                    imageSrc:
+                        "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
+                    imageTitle: "SPACEX",
+                    title: "Falcon 9 Block 5",
+                    subTitle: "Reusable",
+                    id: 123
+                },
+                {
+                    imageSrc:
+                        "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
+                    imageTitle: "SPACEX",
+                    title: "Falcon 9 Block 5",
+                    subTitle: "Reusable",
+                    id: 124
+                },
+                {
+                    imageSrc:
+                        "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
+                    imageTitle: "SPACEX",
+                    title: "Falcon 9 Block 5",
+                    subTitle: "Reusable",
+                    id: 125
+                }
             ]
         };
     }

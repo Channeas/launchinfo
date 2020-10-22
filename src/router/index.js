@@ -34,7 +34,10 @@ const routes = [
     {
         path: "/rockets",
         name: "Rockets",
-        component: () => import("@/views/Rockets.vue")
+        component: () => import("@/views/Rockets.vue"),
+        props: {
+            dataManager: dataManager
+        }
     },
 
     // A single rocket
