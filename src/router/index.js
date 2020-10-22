@@ -2,6 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 
+// Create the DataManager object. It is used by the views as an interface to the API
+import DataManager from "../DataManager.js";
+const dataManager = new DataManager();
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -44,7 +48,10 @@ const routes = [
     {
         path: "/launches",
         name: "Launches",
-        component: () => import("@/views/Launches.vue")
+        component: () => import("@/views/Launches.vue"),
+        props: {
+            dataManager: dataManager
+        }
     },
 
     // A single launch
