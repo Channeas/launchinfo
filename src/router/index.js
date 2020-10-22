@@ -20,7 +20,10 @@ const routes = [
     {
         path: "/agencies",
         name: "Agencies",
-        component: () => import("@/views/Agencies.vue")
+        component: () => import("@/views/Agencies.vue"),
+        props: {
+            dataManager: dataManager
+        }
     },
 
     // The details of a single agency
