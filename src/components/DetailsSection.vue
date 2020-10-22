@@ -62,13 +62,20 @@ export default {
     grid-template-columns: 0.75fr 1fr;
 }
 
+/* Make the leftmost cells bold */
 .detailsList tr td:first-of-type {
     font-weight: bold;
 }
 
+/* Align the rightmost cells */
 .detailsList tr td:last-of-type {
     text-align: right;
     padding-right: 0;
+}
+
+/* Remove the padding of the bottom cells for correct whitespace below */
+.detailsList tr:last-of-type td {
+    padding-bottom: 0;
 }
 
 /* Combine the two list into one */

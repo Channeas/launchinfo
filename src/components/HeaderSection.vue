@@ -7,6 +7,7 @@
         <div class="subSection">
             <p class="headerTitle">{{ header.title }}</p>
             <p class="headerSubTitle">{{ header.subTitle }}</p>
+            <p class="headerSmallTitle">{{ header.smallTitle }}</p>
             <p class="headerDescription">{{ header.description }}</p>
             <router-link
                 v-if="header.buttonUrl"
@@ -52,6 +53,12 @@ export default {
 
 .headerSubTitle {
     font-size: 26px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.headerSmallTitle {
+    font-size: 20px;
     font-weight: bold;
     margin: 20px 0;
 }

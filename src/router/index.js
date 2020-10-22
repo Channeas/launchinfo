@@ -58,7 +58,10 @@ const routes = [
     {
         path: "/launches/:launchId",
         name: "Launch",
-        component: () => import("@/views/Launch.vue")
+        component: () => import("@/views/Launch.vue"),
+        props: {
+            dataManager: dataManager
+        }
     }
 ];
 
