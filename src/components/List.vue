@@ -1,7 +1,7 @@
 <!-- Regular list component -->
 <template>
     <table class="list">
-        <thead>
+        <thead v-if="listHead">
             <tr>
                 <th v-for="(item, index) in listHead" :key="index">
                     {{ item }}
@@ -27,7 +27,7 @@ export default {
     props: {
         listHead: {
             type: Array,
-            required: true
+            required: false
         },
         listData: {
             type: Array,

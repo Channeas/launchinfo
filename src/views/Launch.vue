@@ -8,6 +8,8 @@
                     class="topSection"
                 ></HeaderSection>
 
+                <DetailsSection :detailsData="details"></DetailsSection>
+
                 <List
                     :listHead="listHead"
                     :listData="listData"
@@ -23,6 +25,7 @@
 <script>
 import ViewBody from "@/components/ViewBody.vue";
 import HeaderSection from "@/components/HeaderSection.vue";
+import DetailsSection from "@/components/DetailsSection.vue";
 import List from "@/components/List.vue";
 
 export default {
@@ -30,6 +33,7 @@ export default {
     components: {
         ViewBody,
         HeaderSection,
+        DetailsSection,
         List
     },
     data: function() {
@@ -45,6 +49,17 @@ export default {
                 buttonUrl: "/agency/123",
                 buttonText: "Learn more about SpaceX"
             },
+
+            details: [
+                { rowData: ["Launch provider:", "SpaceX"] },
+                { rowData: ["Rocket:", "Falcon 9 Block 5"] },
+                { rowData: ["Location:", "Kennedy Space Center, FL, USA"] },
+                { rowData: ["Pad:", "Launch Complex 39A"] },
+                { rowData: ["Target:", "Low Earth Orbit"] },
+                { rowData: ["Mission type:", "Communications"] },
+                { rowData: ["Window start:", "2020-10-03T12:34:00Z"] },
+                { rowData: ["Window end:", "2020-10-03T12:34:00Z"] }
+            ],
 
             /* List data */
             listData: [
@@ -93,10 +108,6 @@ export default {
     background-color: #fff;
     margin-top: 30px;
     padding: 40px;
-}
-
-.topSection {
-    margin-bottom: 40px;
 }
 
 #list1 {
