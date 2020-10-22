@@ -81,4 +81,20 @@ export default {
         border-top: 1px solid #e2e2e2;
     }
 }
+
+@media (max-width: 550px) {
+    .detailsList {
+        grid-template-columns: 1fr;
+    }
+
+    .detailsList tr td:first-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .detailsList tr td:last-of-type {
+        text-align: left;
+        padding-top: 10px;
+    }
+}
 </style>
