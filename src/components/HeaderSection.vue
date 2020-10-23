@@ -2,7 +2,7 @@
 <template>
     <div class="headerSection">
         <div class="subSection">
-            <img class="headerImage" :src="header.imageSource" />
+            <img class="headerImage" :src="header.imageSrc" />
         </div>
         <div class="subSection">
             <p class="headerTitle">{{ header.title }}</p>

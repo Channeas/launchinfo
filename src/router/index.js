@@ -47,7 +47,10 @@ const routes = [
     {
         path: "/rockets/:rocketId",
         name: "Rocket",
-        component: () => import("@/views/Rocket.vue")
+        component: () => import("@/views/Rocket.vue"),
+        props: {
+            dataManager: dataManager
+        }
     },
 
     // The list of launches
