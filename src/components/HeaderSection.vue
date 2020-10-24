@@ -36,7 +36,7 @@ export default {
 /* Styling */
 .headerSection {
     display: grid;
-    grid-gap: 60px 40px;
+    grid-gap: 20px 40px;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -73,6 +73,16 @@ export default {
 @media (max-width: 1150px) {
     .headerSection {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .headerImage {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .generalTitle {
+        font-size: 34px;
     }
 }
 </style>
