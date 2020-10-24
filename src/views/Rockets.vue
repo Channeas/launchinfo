@@ -35,3 +35,11 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@media (max-width: 650px) {
+    .rockets {
+        background-color: #f5f5f5;
+    }
+}
+</style>

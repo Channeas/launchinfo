@@ -57,6 +57,7 @@ export default {
 
 .headerDescription {
     font-size: 20px;
+    margin-bottom: 0;
 }
 
 .headerButton {
@@ -67,6 +68,8 @@ export default {
     border-radius: 5px;
     padding: 10px 15px;
     text-decoration: none;
+    margin-top: 1em;
+    display: inline-block;
 }
 
 /* Responsiveness */
@@ -77,12 +80,27 @@ export default {
 }
 
 @media (max-width: 800px) {
+    .headerSection .subSection:first-of-type {
+        margin: -40px;
+        margin-bottom: 0;
+    }
+
     .headerImage {
         border-radius: 5px 5px 0 0;
     }
 
     .generalTitle {
         font-size: 34px;
+    }
+}
+
+@media (max-width: 650px) {
+    .headerSection .subSection:first-of-type {
+        margin-top: 0;
+    }
+
+    .headerImage {
+        border-radius: 0;
     }
 }
 </style>

@@ -22,6 +22,13 @@ export default {
     font-size: 50px;
     font-weight: bold;
     color: var(--text-color);
-    margin: 30px 0;
+    margin: 0;
+    padding: 30px 0;
+}
+
+@media (max-width: 775px) {
+    .listName {
+        text-align: center;
+    }
 }
 </style>

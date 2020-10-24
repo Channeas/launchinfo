@@ -47,4 +47,10 @@ export default {
 .agencies .title {
     margin-top: 0;
 }
+
+@media (max-width: 650px) {
+    .agencies {
+        background-color: #f5f5f5;
+    }
+}
 </style>

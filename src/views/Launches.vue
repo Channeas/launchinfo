@@ -38,3 +38,11 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@media (max-width: 650px) {
+    .launches {
+        background-color: #f5f5f5;
+    }
+}
+</style>

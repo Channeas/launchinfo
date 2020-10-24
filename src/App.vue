@@ -53,6 +53,28 @@ body {
 }
 
 /* Responsiveness */
+@media (max-width: 800px) {
+    :root {
+        --page-width: unset;
+        --page-margin: 0 40px;
+    }
+}
+
+@media (max-width: 650px) {
+    :root {
+        --page-padding: 0;
+    }
+
+    #app {
+        background-color: #fff;
+    }
+
+    .viewContainer {
+        box-shadow: none !important;
+        margin-top: 0 !important;
+    }
+}
+
 @media (max-width: 550px) {
     :root {
         --page-width: unset;
