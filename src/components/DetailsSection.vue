@@ -84,6 +84,10 @@ export default {
     .detailsBlock:last-of-type {
         border-top: 1px solid #e2e2e2;
     }
+
+    .detailsBlock:first-of-type tr:last-of-type td {
+        padding-bottom: 15px;
+    }
 }
 
 @media (max-width: 550px) {
