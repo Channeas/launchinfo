@@ -70,7 +70,7 @@ export default {
 }
 
 .launchList {
-    grid-template-columns: 1fr 160px 1fr 120px;
+    grid-template-columns: 1fr 160px 1fr 108px;
 }
 
 /* List responsiveness */
