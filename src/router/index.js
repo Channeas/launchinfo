@@ -30,7 +30,10 @@ const routes = [
     {
         path: "/agencies/:agencyId",
         name: "Agency",
-        component: () => import("@/views/Agency.vue")
+        component: () => import("@/views/Agency.vue"),
+        props: {
+            dataManager: dataManager
+        }
     },
 
     // The list of rockets
