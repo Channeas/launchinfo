@@ -16,5 +16,6 @@ export default {
     width: var(--page-width);
     max-width: var(--page-max-width);
     margin: var(--page-margin);
+    padding-bottom: 30px;
 }
 </style>
