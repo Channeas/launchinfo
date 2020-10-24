@@ -82,7 +82,11 @@ export default {
         border-top: 1px solid #e2e2e2;
     }
 
-    .detailsBlock:first-of-type tr:last-of-type td {
+    .detailsBlock:first-of-type tr:first-of-type td:first-of-type {
+        padding-top: 0;
+    }
+
+    .detailsBlock:first-of-type tr:last-of-type td:last-of-type {
         padding-bottom: 15px;
     }
 }
