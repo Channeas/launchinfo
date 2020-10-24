@@ -39,7 +39,6 @@ export default {
 <style>
 td {
     white-space: nowrap;
-    overflow: hidden;
 }
 
 .buttonColumn {

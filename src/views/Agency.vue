@@ -72,4 +72,39 @@ export default {
 .launchList {
     grid-template-columns: 1fr 160px 1fr 120px;
 }
+
+/* List responsiveness */
+@media (max-width: 1050px) {
+    .launchList {
+        grid-template-columns: 1fr !important;
+    }
+
+    .launchList thead {
+        display: none;
+    }
+
+    .launchList tr td {
+        border-bottom: 0px;
+        padding: 8px 0;
+    }
+
+    .launchList tr td:last-of-type {
+        border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 25px;
+    }
+
+    .launchList tr td:first-of-type {
+        font-weight: bold;
+        padding-top: 25px;
+    }
+
+    .launchList tr:first-of-type td:first-of-type {
+        padding-top: 0;
+    }
+
+    .launchList tr:last-of-type td:last-of-type {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+}
 </style>
