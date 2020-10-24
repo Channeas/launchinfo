@@ -1,7 +1,7 @@
 <!-- Component that displays details in two lists-->
 <template>
     <div class="detailsSection">
-        <p class="detailsHeader">Details</p>
+        <p class="generalSubTitle detailsHeader">Details</p>
         <div class="detailsContainer">
             <div class="detailsBlock">
                 <List class="detailsList" :listData="list1Data"></List>
@@ -47,9 +47,6 @@ export default {
 }
 
 .detailsHeader {
-    font-size: 26px;
-    font-weight: bold;
-    margin: 0;
     margin-bottom: 15px;
 }
 

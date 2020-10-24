@@ -23,6 +23,7 @@ export default {
     --page-width: 80%;
     --page-max-width: 1110px;
     --page-margin: auto;
+    --page-padding: 40px;
 }
 
 /* Styling */
@@ -36,6 +37,19 @@ body {
     width: 100%;
     background-color: #f5f5f5;
     color: var(--text-color);
+}
+
+/* Styles used by the views */
+.generalTitle {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.generalSubTitle {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0;
 }
 
 /* Responsiveness */

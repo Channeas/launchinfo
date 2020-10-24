@@ -16,7 +16,7 @@
                 ></DetailsSection>
 
                 <!-- Upcoming launches of this rocket -->
-                <p class="listTitle">Upcoming launches</p>
+                <p class="generalSubTitle listTitle">Upcoming launches</p>
                 <List
                     :listHead="viewData.upcomingLaunches.listHead"
                     :listData="viewData.upcomingLaunches.listData"
@@ -60,15 +60,13 @@ export default {
 .viewContainer {
     background-color: #fff;
     margin-top: 30px;
-    padding: 40px;
+    padding: var(--page-padding);
     border-radius: 5px;
     box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
 }
 
 .listTitle {
     margin: 60px 0 15px 0;
-    font-size: 26px;
-    font-weight: bold;
 }
 
 .launchList {

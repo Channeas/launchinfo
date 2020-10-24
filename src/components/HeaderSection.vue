@@ -5,8 +5,8 @@
             <img class="headerImage" :src="header.imageSrc" />
         </div>
         <div class="subSection">
-            <p class="headerTitle">{{ header.title }}</p>
-            <p class="headerSubTitle">{{ header.subTitle }}</p>
+            <p class="generalTitle">{{ header.title }}</p>
+            <p class="generalSubTitle headerSubTitle">{{ header.subTitle }}</p>
             <p class="headerSmallTitle">{{ header.smallTitle }}</p>
             <p class="headerDescription">{{ header.description }}</p>
             <router-link
@@ -45,15 +45,7 @@ export default {
     border-radius: 5px;
 }
 
-.headerTitle {
-    font-size: 42px;
-    font-weight: bold;
-    margin: 0;
-}
-
 .headerSubTitle {
-    font-size: 26px;
-    font-weight: bold;
     margin: 20px 0;
 }
 
