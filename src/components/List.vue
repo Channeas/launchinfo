@@ -59,7 +59,7 @@ export default {
     border-collapse: collapse;
 
     /* Override this value for custom cell sizes */
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr min-content;
 }
 
 thead,

@@ -58,9 +58,6 @@ export default {
     grid-gap: 0 40px;
     grid-template-columns: 1fr 1fr;
 }
-.detailsList {
-    grid-template-columns: 0.75fr 1fr;
-}
 
 /* Make the leftmost cells bold */
 .detailsList tr td:first-of-type {
