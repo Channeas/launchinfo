@@ -260,11 +260,12 @@ export default class DataManager {
 
             // Upcoming launches
             upcomingLaunches: {
-                listHead: ["Mission name", "When", "Where", ""],
+                listHead: ["Mission name", "Rocket", "When", "Where", ""],
                 listData: [
                     {
                         rowData: [
                             "GPS III SV04",
+                            "Falcon 9",
                             "T- 7D 12H 13M",
                             "Kennedy Space Center, FL, USA"
                         ],
@@ -273,6 +274,7 @@ export default class DataManager {
                     {
                         rowData: [
                             "GPS III SV04",
+                            "Falcon 9",
                             "T- 7D 12H 13M",
                             "Kennedy Space Center, FL, USA"
                         ],
@@ -281,6 +283,7 @@ export default class DataManager {
                     {
                         rowData: [
                             "GPS III SV04",
+                            "Falcon 9",
                             "T- 7D 12H 13M",
                             "Kennedy Space Center, FL, USA"
                         ],
@@ -289,6 +292,7 @@ export default class DataManager {
                     {
                         rowData: [
                             "GPS III SV04",
+                            "Falcon 9",
                             "T- 7D 12H 13M",
                             "Kennedy Space Center, FL, USA"
                         ],
