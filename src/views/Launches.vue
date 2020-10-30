@@ -25,7 +25,7 @@ export default {
     data: function() {
         return {
             viewData: {
-                items: this.dataManager.getData(this.$route),
+                items: [],
                 title: "Upcoming launches",
                 urlPrefix: "/launches/"
             }
@@ -34,6 +34,16 @@ export default {
     props: {
         dataManager: {
             required: true
+        }
+    },
+    async created() {
+        // Request the data from the datamanager (is returned using the saveData method as a callback)
+        this.dataManager.getData(this.$route, this.saveData);
+    },
+    methods: {
+        // Method for saving requested data asynchronously
+        saveData(data) {
+            this.viewData.items = data;
         }
     }
 };

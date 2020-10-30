@@ -2,13 +2,19 @@
 export default class DataManager {
     constructor() {
         console.log("Hello, World");
+        this.upcomingLaunches = [];
     }
-    getData(route) {
+
+    getStuff() {
+        return this.upcomingLaunches;
+    }
+
+    getData(route, callback) {
         console.log(route);
         // Determine where the call for data comes from and call the appropriate function
         switch (route.name) {
             case "Launches":
-                return this._getLaunches(route);
+                return this._getLaunches(route, callback);
             case "Launch":
                 return this._getSingleLaunch(route);
             case "Rockets":
@@ -23,39 +29,33 @@ export default class DataManager {
     }
 
     // Function that returns a list of upcoming launches
-    _getLaunches(route) {
+    _getLaunches(route, callback) {
         console.log(route);
 
-        // Call the API (this is just placeholder data)
-        return [
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                imageTitle: "CAPE CANAVERAL, FLORIDA, USA",
-                title: "Starlink 12",
-                subTitle: "T- 00D 09H 55M",
-                description: "SpaceX | Falcon 9 Block 5",
-                id: 123
-            },
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                imageTitle: "CAPE CANAVERAL, FLORIDA, USA",
-                title: "Starlink 13",
-                subTitle: "T- 00D 09H 55M",
-                description: "SpaceX | Falcon 9 Block 5",
-                id: 124
-            },
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                imageTitle: "CAPE CANAVERAL, FLORIDA, USA",
-                title: "Starlink 14",
-                subTitle: "T- 00D 09H 55M",
-                description: "SpaceX | Falcon 9 Block 5",
-                id: 125
+        // Second callback, that parses the returned data and then enters it to the view's callback
+        function handleData(rawData) {
+            // Loop through the returned launches
+            var upcomingLaunches = [];
+            for (var launch of rawData.results) {
+                // Parse  the data to fit the components on the Launches view
+                var res = {
+                    imageSrc: launch.image,
+                    imageTitle: launch.pad.location.name,
+                    title: launch.name,
+                    subTitle: parseDate(launch.window_start),
+                    description: `${launch.launch_service_provider.name} | ${launch.rocket.configuration.full_name}`,
+                    id: launch.id
+                };
+
+                upcomingLaunches.push(res);
             }
-        ];
+
+            // Return the data using the callback that was sent
+            callback(upcomingLaunches);
+        }
+
+        // Get the data on upcoming launches from the API
+        callApi("launch/upcoming/?limit=15", handleData);
     }
 
     // Function that returns data on a single launch
@@ -305,15 +305,18 @@ export default class DataManager {
     }
 }
 
-// Function for calling the API
-async function callApi(path) {
-    // Query the API using the requrested path
-    const response = await fetch(
-        `https://ll.thespacedevs.com/2.0.0/${path}`
-    ).then(response => {
-        return response.json();
-    });
+// Function for parsing a date as a string into a timestamp
+function parseDate(dateString) {
+    // TODO: Write this
+    return dateString;
+}
 
-    // Return the response from the API
-    return response;
+// Function for calling the API
+function callApi(path, callback) {
+    // Query the API using the requested path
+    fetch(`https://ll.thespacedevs.com/2.0.0/${path}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(callback);
 }
