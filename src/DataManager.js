@@ -332,5 +332,8 @@ function callApi(path, callback) {
         .then(response => {
             return response.json();
         })
-        .then(callback);
+        .then(callback)
+        .catch(error => {
+            console.log("Error retrieving data from the API:", error);
+        });
 }
