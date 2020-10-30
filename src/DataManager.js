@@ -304,3 +304,16 @@ export default class DataManager {
         };
     }
 }
+
+// Function for calling the API
+async function callApi(path) {
+    // Query the API using the requrested path
+    const response = await fetch(
+        `https://ll.thespacedevs.com/2.0.0/${path}`
+    ).then(response => {
+        return response.json();
+    });
+
+    // Return the response from the API
+    return response;
+}
