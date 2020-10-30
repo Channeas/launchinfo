@@ -7,7 +7,7 @@
                 {{ content.imageTitle }}
             </p>
             <p class="title">{{ content.title }}</p>
-            <p class="timeLeft">{{ content.subTitle }}</p>
+            <p class="timeLeft">{{ timeCountDown }}</p>
             <p class="rocket">{{ content.description }}</p>
             <router-link :to="urlPrefix + content.id" class="cardButton">
                 Learn more
@@ -28,9 +28,48 @@ export default {
             required: true
         }
     },
+    data: function() {
+        return {
+            currentTimeStamp: Date.now()
+        };
+    },
+    created() {
+        // Update the current time every second
+        window.setInterval(() => {
+            this.currentTimeStamp = Date.now();
+        }, 1000);
+    },
     computed: {
         imageSource: function() {
             return `background-image: url("${this.content.imageSrc}");`;
+        },
+
+        // Returns how long is left until launch in countdown format
+        timeCountDown: function() {
+            // Constants used in the calculations below
+            const dayInMilliseconds = 86400000,
+                hourInMilliseconds = 3600000,
+                minuteInMilliseconds = 60000;
+
+            // Get the launch timestamp
+            var launchTime = this.content.subTitle;
+
+            // Calculate the difference between right now and launch in milliseconds
+            var difference = launchTime - this.currentTimeStamp;
+
+            // Calculate the day
+            var days = Math.floor(difference / dayInMilliseconds);
+            difference -= days * dayInMilliseconds;
+
+            // Calculate the hour
+            var hours = Math.floor(difference / hourInMilliseconds);
+            difference -= hours * hourInMilliseconds;
+
+            // Calculate the minute
+            var minutes = Math.floor(difference / minuteInMilliseconds);
+
+            // Return the time left in countdown format
+            return `T- ${days}D ${hours}H ${minutes}M`;
         }
     }
 };
