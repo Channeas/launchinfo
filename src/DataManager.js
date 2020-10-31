@@ -41,7 +41,10 @@ export default class DataManager {
                 var res = {
                     imageSrc: launch.image,
                     imageTitle: launch.pad.location.name,
-                    title: launch.name,
+                    title: launch.name.substring(
+                        launch.name.indexOf("|") + 2,
+                        launch.name.length
+                    ),
                     subTitle: parseDate(launch.window_start),
                     description: `${launch.launch_service_provider.name} | ${launch.rocket.configuration.full_name}`,
                     id: launch.id
