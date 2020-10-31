@@ -36,7 +36,7 @@ export default {
             required: true
         }
     },
-    async created() {
+    created() {
         // Request the data from the datamanager (is returned using the saveData method as a callback)
         this.dataManager.getData(this.$route, this.saveData);
     },
