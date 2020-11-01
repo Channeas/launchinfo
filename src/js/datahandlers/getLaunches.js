@@ -14,7 +14,7 @@ export default function getLaunches(route, callback) {
         // Loop through the returned launches
         var upcomingLaunches = [];
         for (var launch of rawData.results) {
-            // Parse  the data to fit the components on the Launches view
+            // Parse the data to fit the components on the Launches view
             var res = {
                 imageSrc: launch.image,
                 imageTitle: launch.pad.location.name,
@@ -23,10 +23,19 @@ export default function getLaunches(route, callback) {
                     launch.name.length
                 ),
                 subTitle: parseDate(launch.window_start),
-                description: `${launch.launch_service_provider.name} | ${launch.rocket.configuration.full_name}`,
                 id: launch.id
             };
 
+            // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)
+            var providerName;
+            if (launch.launch_service_provider.name.length > 16) {
+                providerName = launch.launch_service_provider.abbrev;
+            } else {
+                providerName = launch.launch_service_provider.name;
+            }
+            res.description = `${providerName} | ${launch.rocket.configuration.full_name}`;
+
+            // Push the parsed launch into the list of launches
             upcomingLaunches.push(res);
         }
 
@@ -35,5 +44,5 @@ export default function getLaunches(route, callback) {
     }
 
     // Get the data on upcoming launches from the API
-    callApi("launch/upcoming/?limit=15", handleData);
+    callApi("launch/upcoming/?limit=15&mode=detailed", handleData);
 }
