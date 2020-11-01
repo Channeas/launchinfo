@@ -7,7 +7,10 @@
                 {{ content.imageTitle }}
             </p>
             <p class="title">{{ content.title }}</p>
-            <p class="timeLeft">{{ timeCountDown }}</p>
+            <p class="subTitle" v-if="content.subTitleAsCountdown">
+                {{ timeCountDown }}
+            </p>
+            <p class="subTitle" v-else>{{ content.subTitle }}</p>
             <p class="rocket">{{ content.description }}</p>
             <router-link :to="urlPrefix + content.id" class="cardButton">
                 Learn more
@@ -106,7 +109,7 @@ export default {
     overflow: hidden;
 }
 
-.timeLeft {
+.subTitle {
     font-size: 22px;
     font-weight: bold;
     margin: 0;

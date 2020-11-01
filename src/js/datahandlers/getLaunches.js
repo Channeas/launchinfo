@@ -23,6 +23,7 @@ export default function getLaunches(route, callback) {
                     launch.name.length
                 ),
                 subTitle: parseDate(launch.window_start),
+                subTitleAsCountdown: true,
                 id: launch.id
             };
 
