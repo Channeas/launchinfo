@@ -2,9 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 
-// Create the DataManager object. It is used by the views as an interface to the API
-import DataManager from "../DataManager.js";
-const dataManager = new DataManager();
+// Import the function that is used by the views as an interface to the API
+import getDataFromApi from "../js/getDataFromApi.js";
 
 Vue.use(VueRouter);
 
@@ -22,7 +21,7 @@ const routes = [
         name: "Agencies",
         component: () => import("@/views/Agencies.vue"),
         props: {
-            dataManager: dataManager
+            getDataFromApi: getDataFromApi
         }
     },
 
@@ -32,7 +31,7 @@ const routes = [
         name: "Agency",
         component: () => import("@/views/Agency.vue"),
         props: {
-            dataManager: dataManager
+            getDataFromApi: getDataFromApi
         }
     },
 
@@ -42,7 +41,7 @@ const routes = [
         name: "Rockets",
         component: () => import("@/views/Rockets.vue"),
         props: {
-            dataManager: dataManager
+            getDataFromApi: getDataFromApi
         }
     },
 
@@ -52,7 +51,7 @@ const routes = [
         name: "Rocket",
         component: () => import("@/views/Rocket.vue"),
         props: {
-            dataManager: dataManager
+            getDataFromApi: getDataFromApi
         }
     },
 
@@ -62,7 +61,7 @@ const routes = [
         name: "Launches",
         component: () => import("@/views/Launches.vue"),
         props: {
-            dataManager: dataManager
+            getDataFromApi: getDataFromApi
         }
     },
 
@@ -72,7 +71,7 @@ const routes = [
         name: "Launch",
         component: () => import("@/views/Launch.vue"),
         props: {
-            dataManager: dataManager
+            getDataFromApi: getDataFromApi
         }
     }
 ];

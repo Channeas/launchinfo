@@ -32,13 +32,13 @@ export default {
         };
     },
     props: {
-        dataManager: {
+        getDataFromApi: {
             required: true
         }
     },
     created() {
         // Request the data from the datamanager (is returned using the saveData method as a callback)
-        this.dataManager.getData(this.$route, this.saveData);
+        this.getDataFromApi(this.$route, this.saveData);
     },
     methods: {
         // Method for saving requested data asynchronously

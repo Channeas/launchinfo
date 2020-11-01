@@ -44,17 +44,16 @@ export default {
                 details: []
             },
             state: "loading"
-            // viewData: this.dataManager.getData(this.$route)
         };
     },
     props: {
-        dataManager: {
+        getDataFromApi: {
             required: true
         }
     },
     created() {
-        // Request the data from the datamanager (is returned using the saveData method as a callback)
-        this.dataManager.getData(this.$route, this.saveData, this.display404);
+        // Request the data from the API (is returned using the saveData method as a callback)
+        this.getDataFromApi(this.$route, this.saveData, this.display404);
     },
     methods: {
         // Method for saving requested data asynchronously

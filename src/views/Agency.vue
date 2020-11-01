@@ -45,11 +45,11 @@ export default {
     },
     data: function() {
         return {
-            viewData: this.dataManager.getData(this.$route)
+            viewData: this.getDataFromApi(this.$route)
         };
     },
     props: {
-        dataManager: {
+        getDataFromApi: {
             required: true
         }
     }
