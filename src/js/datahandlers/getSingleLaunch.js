@@ -4,6 +4,9 @@ import callApi from "../callApi.js";
 // Import the function for parsing dates into timestamps
 import parseDate from "../parseDate.js";
 
+// Import the fault-resilient function for retrieving object properties
+import getSafeProperty from "../getSafeProperty.js";
+
 // Function that returns data on a single launch via a callback
 export default function getSingleLaunch(route, callback, errorCallback) {
     // Retrieve the id of the launch
@@ -26,23 +29,32 @@ export default function getSingleLaunch(route, callback, errorCallback) {
                 buttonUrl: `/agency/${rawData.launch_service_provider.id}`
             },
 
-            // Data to be displayed in the details list
-            details: [
-                {
-                    rowData: [
-                        "Launch provider:",
-                        rawData.launch_service_provider.name
-                    ]
-                },
-                { rowData: ["Rocket:", rawData.rocket.configuration.name] },
-                { rowData: ["Location:", rawData.pad.location.name] },
-                { rowData: ["Pad:", rawData.pad.name] },
-                { rowData: ["Mission type:", rawData.mission.type] },
-                { rowData: ["Target", rawData.mission.orbit.name] },
-                { rowData: ["Window start:", rawData.window_start] },
-                { rowData: ["Window end:", rawData.window_end] }
-            ]
+            // Data to be displayed in the details list (retrieved below)
+            details: []
         };
+
+        // List of all potential detail properties
+        var detailProperties = [
+            { label: "Launch provider:", name: "launch_service_provider.name" },
+            { label: "Rocket:", name: "rocket.configuration.name" },
+            { label: "Location:", name: "pad.location.name" },
+            { label: "Pad:", name: "pad.name" },
+            { label: "Mission type:", name: "mission.type" },
+            { label: "Target", name: "mission.orbit.name" },
+            { label: "Window start:", name: "window_start" },
+            { label: "Window end:", name: "rawData.window_end" }
+        ];
+
+        // Loop through the potential properties
+        for (var detail of detailProperties) {
+            // Try to retrieve them
+            var value = getSafeProperty(detail.name.split("."), rawData);
+
+            // If they do exist, add them to the list of details
+            if (value != undefined) {
+                launchData.details.push({ rowData: [detail.label, value] });
+            }
+        }
 
         // Add the button text
         if (rawData.launch_service_provider.name.length < 15) {

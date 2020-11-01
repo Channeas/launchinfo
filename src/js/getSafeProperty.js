@@ -6,7 +6,7 @@ export default function getSafeProperty(path, parent) {
         if (path.length == 0) {
             return parent[property];
         } else {
-            return getProperty(path, parent[property]);
+            return getSafeProperty(path, parent[property]);
         }
     } else {
         return undefined;
