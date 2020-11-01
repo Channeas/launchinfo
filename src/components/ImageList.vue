@@ -6,6 +6,7 @@
             :content="item"
             :urlPrefix="contentList.urlPrefix"
             :key="item.id"
+            :currentTimeStamp="currentTimeStamp"
         ></ImageListItem>
     </div>
 </template>
@@ -23,6 +24,17 @@ export default {
             type: Object,
             required: true
         }
+    },
+    data: function() {
+        return {
+            currentTimeStamp: Date.now()
+        };
+    },
+    created() {
+        // Update the current time every second
+        window.setInterval(() => {
+            this.currentTimeStamp = Date.now();
+        }, 1000);
     }
 };
 </script>

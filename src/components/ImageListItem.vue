@@ -26,18 +26,11 @@ export default {
         urlPrefix: {
             type: String,
             required: true
+        },
+        currentTimeStamp: {
+            type: Number,
+            required: false
         }
-    },
-    data: function() {
-        return {
-            currentTimeStamp: Date.now()
-        };
-    },
-    created() {
-        // Update the current time every second
-        window.setInterval(() => {
-            this.currentTimeStamp = Date.now();
-        }, 1000);
     },
     computed: {
         imageSource: function() {
