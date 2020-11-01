@@ -1,34 +1,43 @@
-// Function that returns a list of agencies
-export default function getAgencies(route) {
+// Import the API interface
+import callApi from "../callApi.js";
+
+// Function that returns a list of upcoming launches via a callback
+export default function getAgencies(route, callback) {
+    // TODO: Add Pagination
     console.log(route);
 
-    return {
-        urlPrefix: "/agencies/",
-        items: [
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/logo/arianespace_logo_20190207032425.png",
-                title: "Arianespace",
-                subTitle: "Commercial",
-                description: "Founded in 1980",
-                id: 123
-            },
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/logo/blue2520origin_logo_20190207032427.png",
-                title: "Blue Origin",
-                subTitle: "Commercial",
-                description: "Founded in 2000",
-                id: 124
-            },
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/logo/china2520aerospace2520science2520and2520technology2520corporation_logo_20200114024619.png",
-                title: "China Aerospace Science and Technology Corporation",
-                subTitle: "Reusable",
-                description: "Founded in 1999",
-                id: 125
-            }
-        ]
-    };
+    // Second callback, that parses the returned data and then enters it to the view's callback
+    function handleData(rawData) {
+        // Loop through the returned agencies
+        var agencies = [];
+        for (var agency of rawData.results) {
+            // Parse the data to fit the components on the Agencies view
+            var res = {
+                imageSrc: agency.logo_url,
+                title: `${agency.abbrev} - ${agency.name}`,
+                subTitle: agency.type,
+                // subTitleAsCountdown: true,
+                id: agency.id,
+                description: `Founded in ${agency.founding_year}`
+            };
+
+            // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)
+            // var providerName;
+            // if (launch.launch_service_provider.name.length > 16) {
+            //     providerName = launch.launch_service_provider.abbrev;
+            // } else {
+            //     providerName = launch.launch_service_provider.name;
+            // }
+            // res.description = `${providerName} | ${launch.rocket.configuration.full_name}`;
+
+            // Push the parsed launch into the list of launches
+            agencies.push(res);
+        }
+
+        // Return the data using the callback that was sent by the view
+        callback(agencies);
+    }
+
+    // Get the data on upcoming launches from the API
+    callApi("agencies/?limit=15&mode=detailed&featured=true", handleData);
 }

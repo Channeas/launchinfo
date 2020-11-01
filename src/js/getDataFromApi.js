@@ -21,7 +21,7 @@ export default function getDataFromApi(route, callback, errorCallback) {
         case "Rocket":
             return getSingleRocket(route);
         case "Agencies":
-            return getAgencies(route);
+            return getAgencies(route, callback);
         case "Agency":
             return getSingleAgency(route);
     }

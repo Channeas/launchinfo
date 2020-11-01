@@ -25,12 +25,25 @@ export default {
     data: function() {
         return {
             title: "Agencies",
-            viewData: this.getDataFromApi(this.$route)
+            viewData: {
+                items: [],
+                urlPrefix: "/agencies/"
+            }
         };
     },
     props: {
         getDataFromApi: {
             required: true
+        }
+    },
+    created() {
+        // Request the data from the datamanager (is returned using the saveData method as a callback)
+        this.getDataFromApi(this.$route, this.saveData);
+    },
+    methods: {
+        // Method for saving requested data asynchronously
+        saveData(data) {
+            this.viewData.items = data;
         }
     }
 };
@@ -40,6 +53,7 @@ export default {
 /* Modify the card styling to ensure the logos fit */
 .agencies .imageSection {
     background-size: contain;
+    background-position: center;
     margin: 20px;
     margin-bottom: 0;
 }
