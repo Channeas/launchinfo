@@ -9,14 +9,14 @@ export default class DataManager {
         return this.upcomingLaunches;
     }
 
-    getData(route, callback) {
+    getData(route, callback, errorCallback) {
         console.log(route);
         // Determine where the call for data comes from and call the appropriate function
         switch (route.name) {
             case "Launches":
                 return this._getLaunches(route, callback);
             case "Launch":
-                return this._getSingleLaunch(route);
+                return this._getSingleLaunch(route, callback, errorCallback);
             case "Rockets":
                 return this._getRockets(route);
             case "Rocket":
@@ -53,7 +53,7 @@ export default class DataManager {
                 upcomingLaunches.push(res);
             }
 
-            // Return the data using the callback that was sent
+            // Return the data using the callback that was sent by the view
             callback(upcomingLaunches);
         }
 
@@ -62,34 +62,57 @@ export default class DataManager {
     }
 
     // Function that returns data on a single launch
-    _getSingleLaunch(route) {
-        console.log(route.params);
-        return {
-            /* Header data */
-            header: {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                title: "Starlink 12",
-                subTitle: "T- 00D 09H 55M",
-                smallTitle: "SpaceX",
-                description:
-                    "A batch of 60 satellites for Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-                buttonUrl: "/agency/123",
-                buttonText: "Learn more about SpaceX"
-            },
+    _getSingleLaunch(route, callback, errorCallback) {
+        // Retrieve the id of the launch
+        const launchId = route.params.launchId;
 
-            /* Launch details */
-            details: [
-                { rowData: ["Launch provider:", "SpaceX"] },
-                { rowData: ["Rocket:", "Falcon 9 Block 5"] },
-                { rowData: ["Location:", "Kennedy Space Center, FL, USA"] },
-                { rowData: ["Pad:", "Launch Complex 39A"] },
-                { rowData: ["Target:", "Low Earth Orbit"] },
-                { rowData: ["Mission type:", "Communications"] },
-                { rowData: ["Window start:", "2020-10-03T12:34:00Z"] },
-                { rowData: ["Window end:", "2020-10-03T12:34:00Z"] }
-            ]
-        };
+        // Callback that parses the returned data and then enters it to the callback sent by the view
+        function handleData(rawData) {
+            var launchData = {
+                // Data to be displayed in the page header
+                header: {
+                    imageSrc: rawData.image,
+                    title: rawData.name.substring(
+                        rawData.name.indexOf("|") + 2,
+                        rawData.name.length
+                    ),
+                    subTitle: parseDate(rawData.window_start),
+                    subTitleAsCountdown: true,
+                    smallTitle: rawData.launch_service_provider.name,
+                    description: rawData.mission.description,
+                    buttonUrl: `/agency/${rawData.launch_service_provider.id}`
+                },
+
+                // Data to be displayed in the details list
+                details: [
+                    {
+                        rowData: [
+                            "Launch provider:",
+                            rawData.launch_service_provider.name
+                        ]
+                    },
+                    { rowData: ["Rocket:", rawData.rocket.configuration.name] },
+                    { rowData: ["Location:", rawData.pad.location.name] },
+                    { rowData: ["Pad:", rawData.pad.name] },
+                    { rowData: ["Mission type:", rawData.mission.type] },
+                    { rowData: ["Target", rawData.mission.orbit.name] },
+                    { rowData: ["Window start:", rawData.window_start] },
+                    { rowData: ["Window end:", rawData.window_end] }
+                ]
+            };
+
+            // Add the button text
+            if (rawData.launch_service_provider.name.length < 15) {
+                launchData.header.buttonText = `Learn more about ${rawData.launch_service_provider.name}`;
+            } else {
+                launchData.header.buttonText = `Learn more about ${rawData.launch_service_provider.abbrev}`;
+            }
+
+            // Return the data using the callback that was sent by the view
+            callback(launchData);
+        }
+
+        callApi(`launch/upcoming/${launchId}`, handleData, errorCallback);
     }
 
     // Function that returns a list of rockets
@@ -329,13 +352,29 @@ function parseDate(dateString) {
 }
 
 // Function for calling the API
-function callApi(path, callback) {
+function callApi(path, callback, errorCallback) {
     // Query the API using the requested path
     fetch(`https://ll.thespacedevs.com/2.0.0/${path}`)
         .then(response => {
-            return response.json();
+            // Check if the response was successful
+            if (response.status == 200) {
+                // If it was, parse the data to JSON
+                const data = response.json();
+                return data;
+            } else {
+                // If the response failed, call the error callback sent by the view
+                if (errorCallback) {
+                    errorCallback();
+                }
+                return null;
+            }
         })
-        .then(callback)
+        .then(data => {
+            // Call the callback if the response was successful
+            if (data != null) {
+                callback(data);
+            }
+        })
         .catch(error => {
             console.log("Error retrieving data from the API:", error);
         });

@@ -2,7 +2,8 @@
 <template>
     <div class="headerSection">
         <div class="subSection">
-            <img class="headerImage" :src="header.imageSrc" />
+            <!-- <img class="headerImage" :src="header.imageSrc" /> -->
+            <div class="headerImage" :style="imageSource"></div>
         </div>
         <div class="subSection">
             <p class="generalTitle">{{ header.title }}</p>
@@ -28,6 +29,11 @@ export default {
             type: Object,
             required: true
         }
+    },
+    computed: {
+        imageSource: function() {
+            return `background-image: url("${this.header.imageSrc}");`;
+        }
     }
 };
 </script>
@@ -41,7 +47,11 @@ export default {
 }
 
 .headerImage {
+    height: 350px;
     width: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
     border-radius: 5px;
 }
 

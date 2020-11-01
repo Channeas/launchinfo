@@ -3,15 +3,23 @@
     <div class="launch">
         <ViewBody>
             <div class="viewContainer">
+                <!-- Content that is displayed if the launch was found -->
                 <HeaderSection
                     :header="viewData.header"
                     class="topSection"
+                    v-if="state == 'loaded'"
                 ></HeaderSection>
 
                 <DetailsSection
                     :detailsData="viewData.details"
                     class="detailsSection"
+                    v-if="state == 'loaded'"
                 ></DetailsSection>
+
+                <!-- Content that is displayed if the launch was NOT found -->
+                <p class="generalTitle" v-if="state == '404'">
+                    Launch not found
+                </p>
             </div>
         </ViewBody>
     </div>
@@ -31,12 +39,33 @@ export default {
     },
     data: function() {
         return {
-            viewData: this.dataManager.getData(this.$route)
+            viewData: {
+                header: {},
+                details: []
+            },
+            state: "loading"
+            // viewData: this.dataManager.getData(this.$route)
         };
     },
     props: {
         dataManager: {
             required: true
+        }
+    },
+    created() {
+        // Request the data from the datamanager (is returned using the saveData method as a callback)
+        this.dataManager.getData(this.$route, this.saveData, this.display404);
+    },
+    methods: {
+        // Method for saving requested data asynchronously
+        saveData(data) {
+            this.viewData = data;
+            this.state = "loaded";
+        },
+
+        // Method for displaying that the selected rocket was not found
+        display404() {
+            this.state = "404";
         }
     }
 };
