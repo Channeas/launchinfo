@@ -25,7 +25,10 @@ export default function getSingleLaunch(route, callback, errorCallback) {
                 subTitle: parseDate(rawData.window_start),
                 subTitleAsCountdown: true,
                 smallTitle: rawData.launch_service_provider.name,
-                description: rawData.mission.description,
+                description: getSafeProperty(
+                    "mission.description".split("."),
+                    rawData
+                ),
                 buttonUrl: `/agency/${rawData.launch_service_provider.id}`
             },
 
