@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
 
 // Import the function that is used by the views as an interface to the API
 import getDataFromApi from "../js/getDataFromApi.js";
@@ -11,8 +11,11 @@ const routes = [
     // The landing page
     {
         path: "/",
-        name: "Home",
-        component: Home
+        name: "Launches",
+        component: () => import("@/views/Launches.vue"),
+        props: {
+            getDataFromApi: getDataFromApi
+        }
     },
 
     // The list of agencies
