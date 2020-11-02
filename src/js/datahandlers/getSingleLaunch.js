@@ -60,11 +60,12 @@ export default function getSingleLaunch(route, callback, errorCallback) {
         }
 
         // Add the button text
-        if (rawData.launch_service_provider.name.length < 15) {
-            launchData.header.buttonText = `Learn more about ${rawData.launch_service_provider.name}`;
-        } else {
-            launchData.header.buttonText = `Learn more about ${rawData.launch_service_provider.abbrev}`;
-        }
+        launchData.header.buttonText = `Learn more about ${
+            // Use the abbreviation if the launch provider name is longer than 14 characters
+            rawData.launch_service_provider.name.length < 15
+                ? rawData.launch_service_provider.name
+                : rawData.launch_service_provider.abbrev
+        }`;
 
         // Return the data using the callback that was sent by the view
         callback(launchData);

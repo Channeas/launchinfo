@@ -28,12 +28,10 @@ export default function getLaunches(route, callback) {
             };
 
             // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)
-            var providerName;
-            if (launch.launch_service_provider.name.length > 16) {
-                providerName = launch.launch_service_provider.abbrev;
-            } else {
-                providerName = launch.launch_service_provider.name;
-            }
+            var providerName =
+                launch.launch_service_provider.name.length < 15
+                    ? launch.launch_service_provider.name
+                    : launch.launch_service_provider.abbrev;
             res.description = `${providerName} | ${launch.rocket.configuration.full_name}`;
 
             // Push the parsed launch into the list of launches
