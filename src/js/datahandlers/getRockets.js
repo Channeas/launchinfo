@@ -3,9 +3,6 @@ import callApi from "../callApi.js";
 
 // Function that returns a list of rockets
 export default function getRockets(route, callback) {
-    // TODO: Add pagination
-    console.log(route);
-
     // Callback used for parsing data
     function handleData(rawData) {
         // Loop through the returned rockets
@@ -25,6 +22,15 @@ export default function getRockets(route, callback) {
         callback(rockets);
     }
 
+    // Take into account what page the user is on
+    var offset = 0;
+    if (route.query.page) {
+        offset = (route.query.page - 1) * 15;
+    }
+
     // Get the data on rockets from the API
-    callApi("config/launcher/?limit=15&active=true", handleData);
+    callApi(
+        `config/launcher/?limit=15&offset=${offset}&active=true`,
+        handleData
+    );
 }
