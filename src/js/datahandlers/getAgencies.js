@@ -16,19 +16,9 @@ export default function getAgencies(route, callback) {
                 imageSrc: agency.logo_url,
                 title: `${agency.abbrev} - ${agency.name}`,
                 subTitle: agency.type,
-                // subTitleAsCountdown: true,
                 id: agency.id,
                 description: `Founded in ${agency.founding_year}`
             };
-
-            // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)
-            // var providerName;
-            // if (launch.launch_service_provider.name.length > 16) {
-            //     providerName = launch.launch_service_provider.abbrev;
-            // } else {
-            //     providerName = launch.launch_service_provider.name;
-            // }
-            // res.description = `${providerName} | ${launch.rocket.configuration.full_name}`;
 
             // Push the parsed launch into the list of launches
             agencies.push(res);
