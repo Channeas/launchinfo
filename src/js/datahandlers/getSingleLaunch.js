@@ -29,7 +29,7 @@ export default function getSingleLaunch(route, callback, errorCallback) {
                     "mission.description".split("."),
                     rawData
                 ),
-                buttonUrl: `/agency/${rawData.launch_service_provider.id}`
+                buttonUrl: `/agencies/${rawData.launch_service_provider.id}`
             },
 
             // Data to be displayed in the details list (retrieved below)
