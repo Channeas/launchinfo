@@ -25,12 +25,25 @@ export default {
     data: function() {
         return {
             title: "Rockets",
-            viewData: this.getDataFromApi(this.$route)
+            viewData: {
+                items: [],
+                urlPrefix: "/rockets/"
+            }
         };
     },
     props: {
         getDataFromApi: {
             required: true
+        }
+    },
+    created() {
+        // Request the data from the datamanager (is returned using the saveData method as a callback)
+        this.getDataFromApi(this.$route, this.saveData);
+    },
+    methods: {
+        // Callback method for saving requested data asynchronously
+        saveData(data) {
+            this.viewData.items = data;
         }
     }
 };

@@ -17,7 +17,7 @@ export default function getDataFromApi(route, callback, errorCallback) {
         case "Launch":
             return getSingleLaunch(route, callback, errorCallback);
         case "Rockets":
-            return getRockets(route);
+            return getRockets(route, callback);
         case "Rocket":
             return getSingleRocket(route);
         case "Agencies":

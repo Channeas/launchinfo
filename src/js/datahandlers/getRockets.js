@@ -1,34 +1,30 @@
+// Import the API reference
+import callApi from "../callApi.js";
+
 // Function that returns a list of rockets
-export default function getRockets(route) {
+export default function getRockets(route, callback) {
+    // TODO: Add pagination
     console.log(route);
 
-    return {
-        urlPrefix: "/rockets/",
-        items: [
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                imageTitle: "SPACEX",
-                title: "Falcon 9 Block 5",
-                subTitle: "Reusable",
-                id: 123
-            },
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                imageTitle: "SPACEX",
-                title: "Falcon 9 Block 5",
-                subTitle: "Reusable",
-                id: 124
-            },
-            {
-                imageSrc:
-                    "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-                imageTitle: "SPACEX",
-                title: "Falcon 9 Block 5",
-                subTitle: "Reusable",
-                id: 125
-            }
-        ]
-    };
+    // Callback used for parsing data
+    function handleData(rawData) {
+        // Loop through the returned rockets
+        const rockets = [];
+        for (const rocket of rawData.results) {
+            // Parse the data to fit the components on the Rockets view
+            rockets.push({
+                imageSrc: rocket.image_url,
+                imageTitle: rocket.manufacturer.name,
+                title: rocket.name,
+                subTitle: rocket.reusable ? "Reusable" : "Not reusable",
+                id: rocket.id
+            });
+        }
+
+        // Return the data using the callback that was sent by the view
+        callback(rockets);
+    }
+
+    // Get the data on rockets from the API
+    callApi("config/launcher/?limit=15&active=true", handleData);
 }
