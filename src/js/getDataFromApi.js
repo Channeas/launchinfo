@@ -12,6 +12,8 @@ export default function getDataFromApi(route, callback, errorCallback) {
     console.log(route);
     // Determine where the call for data comes from and call the appropriate function
     switch (route.name) {
+        case "Launches landing": // The landing (root /) page
+            return getLaunches(route, callback);
         case "Launches":
             return getLaunches(route, callback);
         case "Launch":

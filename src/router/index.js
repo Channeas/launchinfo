@@ -11,7 +11,7 @@ const routes = [
     // The landing page
     {
         path: "/",
-        name: "Launches",
+        name: "Launches landing",
         component: () => import("@/views/Launches.vue"),
         props: {
             getDataFromApi: getDataFromApi
