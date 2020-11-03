@@ -2,7 +2,7 @@
 import callApi from "../callApi.js";
 
 // // Import the function for parsing dates into timestamps
-// import parseDate from "../parseDate.js";
+import parseDate from "../parseDate.js";
 
 // Import the fault-resilient function for retrieving object properties
 import getSafeProperty from "../getSafeProperty.js";
@@ -30,73 +30,46 @@ export default function getSingleRocket(route, callback) {
     // Call the API for the main rocket data
     callApi(`config/launcher/${rocketId}`, handleMainData);
 
-    // return {
-    //     // Header data
-    //     header: {
-    //         imageSrc:
-    //             "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/falcon25209_image_20190224025007.jpeg",
-    //         title: "Falcon 9 Block 5",
-    //         subTitle: "SpaceX",
-    //         description:
-    //             "Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of satellites and the Dragon spacecraft into orbit. The Block 5 variant is the fifth major interval aimed at improving upon the ability for rapid reusability.",
-    //         buttonUrl: "/agency/123",
-    //         buttonText: "Learn more about SpaceX"
-    //     },
+    // Function that handles upcoming launch data
+    function handleLaunches(launches) {
+        console.log(launches);
 
-    //     // Rocket details
-    //     details: [
-    //         { rowData: ["Launch success ratio:", "100%"] },
-    //         { rowData: ["Total launch count:", "38"] },
-    //         { rowData: ["Country:", "USA"] },
-    //         { rowData: ["Maiden flight:", "2018-05-11"] },
-    //         { rowData: ["Pending launches", "34"] },
-    //         { rowData: ["Length:", "70.0m"] },
-    //         { rowData: ["Diameter", "3.65m"] },
-    //         { rowData: ["LEO capacity", "22800 kg"] },
-    //         { rowData: ["GTO capacity", "8300 kg"] },
-    //         { rowData: ["Thrust", "7607 kN"] }
-    //     ],
+        const upcomingLaunches = {
+            listHead: ["Mission name", "When", "Where", ""],
+            listData: [],
+            buttonText: "Learn more"
+        };
 
-    //     // Upcoming launches
-    //     upcomingLaunches: {
-    //         listHead: ["Mission name", "When", "Where", ""],
-    //         listData: [
-    //             {
-    //                 rowData: [
-    //                     "GPS III SV04",
-    //                     "T- 7D 12H 13M",
-    //                     "Kennedy Space Center, FL, USA"
-    //                 ],
-    //                 rowLink: "/launches/123"
-    //             },
-    //             {
-    //                 rowData: [
-    //                     "GPS III SV04",
-    //                     "T- 7D 12H 13M",
-    //                     "Kennedy Space Center, FL, USA"
-    //                 ],
-    //                 rowLink: "/launches/124"
-    //             },
-    //             {
-    //                 rowData: [
-    //                     "GPS III SV04",
-    //                     "T- 7D 12H 13M",
-    //                     "Kennedy Space Center, FL, USA"
-    //                 ],
-    //                 rowLink: "/launches/125"
-    //             },
-    //             {
-    //                 rowData: [
-    //                     "GPS III SV04",
-    //                     "T- 7D 12H 13M",
-    //                     "Kennedy Space Center, FL, USA"
-    //                 ],
-    //                 rowLink: "/launches/126"
-    //             }
-    //         ],
-    //         buttonText: "Learn more"
-    //     }
-    // };
+        for (const launch of launches.results) {
+            // Determine the launch location
+            var location = getSafeProperty("pad.location.name", launch);
+            if (!location) {
+                location = "Unknown location";
+            }
+
+            upcomingLaunches.listData.push({
+                rowData: [
+                    launch.name.substring(
+                        launch.name.indexOf("|") + 2,
+                        launch.name.length
+                    ),
+                    parseDate(launch.window_start),
+                    location
+                ],
+                rowLink: `/launches/${launch.id}`
+            });
+        }
+
+        callback({
+            upcomingLaunches: upcomingLaunches
+        });
+    }
+
+    // Call the API for upcoming launches
+    callApi(
+        `launch/upcoming/?rocket__configuration__id=${rocketId}`,
+        handleLaunches
+    );
 }
 
 // Function that parses general informations for the header
