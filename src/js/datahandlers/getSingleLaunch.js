@@ -25,10 +25,7 @@ export default function getSingleLaunch(route, callback, errorCallback) {
                 subTitle: parseDate(rawData.window_start),
                 subTitleAsCountdown: true,
                 smallTitle: rawData.launch_service_provider.name,
-                description: getSafeProperty(
-                    "mission.description".split("."),
-                    rawData
-                ),
+                description: getSafeProperty("mission.description", rawData),
                 buttonUrl: `/agencies/${rawData.launch_service_provider.id}`
             },
 
@@ -51,7 +48,7 @@ export default function getSingleLaunch(route, callback, errorCallback) {
         // Loop through the potential properties
         for (var detail of detailProperties) {
             // Try to retrieve them
-            var value = getSafeProperty(detail.name.split("."), rawData);
+            var value = getSafeProperty(detail.name, rawData);
 
             // If they do exist, add them to the list of details
             if (value != undefined) {

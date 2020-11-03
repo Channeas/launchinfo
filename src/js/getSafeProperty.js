@@ -1,5 +1,10 @@
-// A recursive function that prevents errors when getting (sub)properties that might not exist
+// A function that prevents errors when getting (sub)properties that might not exist
 export default function getSafeProperty(path, parent) {
+    return readProperty(path.split("."), parent);
+}
+
+// Recursive function for reading a paramater following a certain path
+function readProperty(path, parent) {
     // Get the topmost property name
     const property = path.shift();
 
@@ -10,7 +15,7 @@ export default function getSafeProperty(path, parent) {
             return parent[property];
         } else {
             // Else keep looking deeper
-            return getSafeProperty(path, parent[property]);
+            return readProperty(path, parent[property]);
         }
     } else {
         // Return undefined if the property does not exist
