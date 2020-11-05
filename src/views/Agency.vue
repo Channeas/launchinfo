@@ -117,8 +117,8 @@ export default {
     margin: 60px 0 15px 0;
 }
 
-.launchList {
-    grid-template-columns: repeat(4, 1fr) min-content;
+.agency .launchList {
+    grid-template-columns: 1fr 1fr 160px 1fr 108px;
 }
 
 .agency .headerImage {

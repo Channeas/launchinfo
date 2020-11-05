@@ -1,6 +1,12 @@
 // Import the API interface
 import callApi from "../callApi.js";
 
+// Import the function for parsing dates into timestamps
+import parseDate from "../functions/parseDate.js";
+
+// Import the fault-resilient function for retrieving object properties
+import getSafeProperty from "../functions/getSafeProperty.js";
+
 // Import the function for filtering away empty details
 import filterDetails from "../functions/filterDetails.js";
 
@@ -10,6 +16,9 @@ export default function getSingleAgency(route, callback, errorCallback) {
 
     // Function that handles the main data response
     function handleMainData(agency) {
+        // Start loading the upcoming launches of this agency
+        getAgencyLaunches(agency, handleLaunches);
+
         // Retrieve and parse the details
         const details = parseDetails(agency);
 
@@ -20,6 +29,49 @@ export default function getSingleAgency(route, callback, errorCallback) {
         callback({
             header: parseHeader(agency),
             details: details
+        });
+    }
+
+    // Function that handles upcoming launch data
+    function handleLaunches(launches) {
+        const upcomingLaunches = {
+            listHead: ["Mission name", "Rocket", "When", "Where", ""],
+            listData: [],
+            buttonText: "Learn more"
+        };
+
+        for (const launch of launches.results) {
+            // Determine the launch location
+            var location = getSafeProperty("pad.location.name", launch);
+            if (!location) {
+                location = "Unknown location";
+            }
+
+            // Determine the rocket type
+            var rocketName = getSafeProperty(
+                "rocket.configuration.full_name",
+                launch
+            );
+            if (!rocketName) {
+                rocketName = "Unknown rocket";
+            }
+
+            upcomingLaunches.listData.push({
+                rowData: [
+                    launch.name.substring(
+                        launch.name.indexOf("|") + 2,
+                        launch.name.length
+                    ),
+                    rocketName,
+                    parseDate(launch.window_start),
+                    location
+                ],
+                rowLink: `/launches/${launch.id}`
+            });
+        }
+
+        callback({
+            upcomingLaunches: upcomingLaunches
         });
     }
 
@@ -74,4 +126,18 @@ function parseDetails(agency) {
     }
 
     return details;
+}
+
+// Function for getting the 10 most imminent launches for the agency
+function getAgencyLaunches(agency, callback) {
+    // Remove spaces from the agency name
+    var name = agency.name;
+    while (name.indexOf(" ") > -1) {
+        name = name.replace(" ", "%20");
+    }
+
+    callApi(
+        `launch/upcoming/?rocket__configuration__manufacturer__name=${name}`,
+        callback
+    );
 }
