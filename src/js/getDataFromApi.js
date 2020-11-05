@@ -25,6 +25,6 @@ export default function getDataFromApi(route, callback, errorCallback) {
         case "Agencies":
             return getAgencies(route, callback);
         case "Agency":
-            return getSingleAgency(route);
+            return getSingleAgency(route, callback, errorCallback);
     }
 }

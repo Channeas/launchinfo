@@ -7,23 +7,33 @@
                 <HeaderSection
                     :header="viewData.header"
                     class="topSection"
+                    v-if="state == 'loaded'"
                 ></HeaderSection>
 
-                <!-- Rocket details -->
+                <!-- Agency details -->
                 <DetailsSection
                     :detailsData="viewData.details"
                     class="detailsSection"
+                    v-if="state == 'loaded'"
                 ></DetailsSection>
 
-                <!-- Upcoming launches of this rocket -->
-                <p class="generalSubTitle listTitle">Upcoming launches</p>
+                <!-- Upcoming launches of this agency -->
+                <p class="generalSubTitle listTitle" v-if="state == 'loaded'">
+                    Upcoming launches
+                </p>
                 <List
                     :listHead="viewData.upcomingLaunches.listHead"
                     :listData="viewData.upcomingLaunches.listData"
                     :hasButton="true"
                     :buttonText="viewData.upcomingLaunches.buttonText"
                     class="launchList"
+                    v-if="state == 'loaded'"
                 ></List>
+
+                <!-- Content that is displayed if the agency was NOT found -->
+                <p class="generalTitle" v-if="state == '404'">
+                    Agency not found
+                </p>
             </div>
         </ViewBody>
     </div>
@@ -45,12 +55,50 @@ export default {
     },
     data: function() {
         return {
-            viewData: this.getDataFromApi(this.$route)
+            viewData: {
+                header: {},
+                details: [],
+                upcomingLaunches: {
+                    listHead: [],
+                    listData: []
+                }
+            },
+            state: "loading"
         };
     },
     props: {
         getDataFromApi: {
             required: true
+        }
+    },
+    created() {
+        // Request the data from the API (is returned using the saveData method as a callback)
+        this.getDataFromApi(this.$route, this.saveData, this.display404);
+    },
+    methods: {
+        // Method for saving requested data asynchronously
+        saveData(data) {
+            // Potentially save the header
+            if (data.header) {
+                this.viewData.header = data.header;
+            }
+
+            // Potentially save the details
+            if (data.details) {
+                this.viewData.details = data.details;
+            }
+
+            // Potentially save upcoming launch data
+            if (data.upcomingLaunches) {
+                this.viewData.upcomingLaunches = data.upcomingLaunches;
+            }
+
+            this.state = "loaded";
+        },
+
+        // Method for displaying that the selected rocket was not found
+        display404() {
+            this.state = "404";
         }
     }
 };
@@ -71,6 +119,11 @@ export default {
 
 .launchList {
     grid-template-columns: repeat(4, 1fr) min-content;
+}
+
+.agency .headerImage {
+    background-size: contain;
+    background-position: center;
 }
 
 /* List responsiveness */
