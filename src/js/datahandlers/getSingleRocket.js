@@ -92,7 +92,7 @@ function parseHeader(rocket) {
         title: rocket.full_name,
         subTitle: `${manufacturerName} (${manufacturerAbbrev})`,
         description: rocket.description,
-        buttonUrl: `/agency/${getSafeProperty("manufacturer.id", rocket)}`,
+        buttonUrl: `/agencies/${getSafeProperty("manufacturer.id", rocket)}`,
         buttonText: buttonText
     };
 
