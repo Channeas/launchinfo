@@ -75,7 +75,8 @@ export default function getSingleRocket(route, callback) {
 // Function that parses general informations for the header
 function parseHeader(rocket) {
     // Attributes used in mulitple locations
-    const manufacturerName = getSafeProperty("manufacturer.name", rocket);
+    const manufacturerName = getSafeProperty("manufacturer.name", rocket),
+        manufacturerAbbrev = getSafeProperty("manufacturer.abbrev", rocket);
 
     // Create the button text depending on the length of the manufacturer's name
     const buttonText = `Learn more about ${
@@ -89,7 +90,7 @@ function parseHeader(rocket) {
     const header = {
         imageSrc: rocket.image_url,
         title: rocket.full_name,
-        subTitle: manufacturerName,
+        subTitle: `${manufacturerName} (${manufacturerAbbrev})`,
         description: rocket.description,
         buttonUrl: `/agency/${getSafeProperty("manufacturer.id", rocket)}`,
         buttonText: buttonText
