@@ -14,7 +14,7 @@
                 {{ timeCountDown }}
             </p>
             <p class="generalSubTitle headerSubTitle" v-else>
-                {{ timeCountDown }}
+                {{ header.subTitle }}
             </p>
             <p class="headerSmallTitle">{{ header.smallTitle }}</p>
             <p class="headerDescription">{{ header.description }}</p>
