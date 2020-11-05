@@ -2,7 +2,7 @@
 import callApi from "../callApi.js";
 
 // Import the function for parsing dates into timestamps
-import parseDate from "../parseDate.js";
+import parseDate from "../functions/parseDate.js";
 
 // Function that returns a list of upcoming launches via a callback
 export default function getLaunches(route, callback) {

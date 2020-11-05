@@ -2,10 +2,10 @@
 import callApi from "../callApi.js";
 
 // Import the function for parsing dates into timestamps
-import parseDate from "../parseDate.js";
+import parseDate from "../functions/parseDate.js";
 
 // Import the fault-resilient function for retrieving object properties
-import getSafeProperty from "../getSafeProperty.js";
+import getSafeProperty from "../functions/getSafeProperty.js";
 
 // Function that returns data on a single launch via a callback
 export default function getSingleLaunch(route, callback, errorCallback) {
