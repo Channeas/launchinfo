@@ -11,7 +11,7 @@ import getSafeProperty from "../functions/getSafeProperty.js";
 import filterDetails from "../functions/filterDetails.js";
 
 // Function that returns the data of a single rocket
-export default function getSingleRocket(route, callback) {
+export default function getSingleRocket(route, callback, errorCallback) {
     // Retrieve the id of the rocket
     const rocketId = route.params.rocketId;
 
@@ -31,7 +31,7 @@ export default function getSingleRocket(route, callback) {
     }
 
     // Call the API for the main rocket data
-    callApi(`config/launcher/${rocketId}`, handleMainData);
+    callApi(`config/launcher/${rocketId}`, handleMainData, errorCallback);
 
     // Function that handles upcoming launch data
     function handleLaunches(launches) {
