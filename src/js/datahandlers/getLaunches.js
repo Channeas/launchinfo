@@ -12,10 +12,10 @@ export default function getLaunches(route, callback) {
     // Second callback, that parses the returned data and then enters it to the view's callback
     function handleData(rawData) {
         // Loop through the returned launches
-        var upcomingLaunches = [];
-        for (var launch of rawData.results) {
+        const upcomingLaunches = [];
+        for (const launch of rawData.results) {
             // Parse the data to fit the components on the Launches view
-            var res = {
+            const res = {
                 imageSrc: launch.image,
                 imageTitle: launch.pad.location.name,
                 title: launch.name.substring(
@@ -28,7 +28,7 @@ export default function getLaunches(route, callback) {
             };
 
             // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)
-            var providerName =
+            const providerName =
                 launch.launch_service_provider.name.length < 15
                     ? launch.launch_service_provider.name
                     : launch.launch_service_provider.abbrev;

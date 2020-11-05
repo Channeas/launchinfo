@@ -79,9 +79,8 @@ export default function getSingleAgency(route, callback, errorCallback) {
     callApi(`agencies/${agencyId}`, handleMainData, errorCallback);
 }
 
-// Function that parses general informations for the header
+// Function that parses general information for the header
 function parseHeader(agency) {
-    console.log(agency);
     // Parse other header data
     const header = {
         imageSrc: agency.logo_url,

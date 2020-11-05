@@ -35,8 +35,6 @@ export default function getSingleRocket(route, callback, errorCallback) {
 
     // Function that handles upcoming launch data
     function handleLaunches(launches) {
-        console.log(launches);
-
         const upcomingLaunches = {
             listHead: ["Mission name", "When", "Where", ""],
             listData: [],
@@ -75,7 +73,7 @@ export default function getSingleRocket(route, callback, errorCallback) {
     );
 }
 
-// Function that parses general informations for the header
+// Function that parses general information for the header
 function parseHeader(rocket) {
     // Attributes used in mulitple locations
     const manufacturerName = getSafeProperty("manufacturer.name", rocket),

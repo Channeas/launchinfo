@@ -9,10 +9,10 @@ export default function getAgencies(route, callback) {
     // Second callback, that parses the returned data and then enters it to the view's callback
     function handleData(rawData) {
         // Loop through the returned agencies
-        var agencies = [];
-        for (var agency of rawData.results) {
+        const agencies = [];
+        for (const agency of rawData.results) {
             // Parse the data to fit the components on the Agencies view
-            var res = {
+            const res = {
                 imageSrc: agency.logo_url,
                 title: `${agency.abbrev} - ${agency.name}`,
                 subTitle: agency.type,
