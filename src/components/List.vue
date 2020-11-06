@@ -57,9 +57,10 @@ export default {
     display: grid;
     min-width: 100%;
     border-collapse: collapse;
+    overflow: hidden;
 
     /* Override this value for custom cell sizes */
-    grid-template-columns: 1fr min-content;
+    grid-template-columns: min-content minmax(0, 1fr);
 }
 
 thead,
@@ -68,19 +69,31 @@ tr {
     display: contents;
 }
 
+th {
+    text-align: left;
+    padding-left: 30px;
+}
+
 td {
     border-bottom: 1px solid #e2e2e2;
+    background-color: #fff;
 }
 
 .dataColumn {
-    padding: 15px 40px 15px 0;
+    padding: 15px 0 15px 30px;
+}
+
+.list tr .dataColumn:first-of-type,
+.list tr th:first-of-type {
+    padding-left: 0;
 }
 
 .list tr:last-of-type td {
     border: none;
 }
 
-th {
-    text-align: left;
+.list .buttonColumn {
+    padding-left: 30px;
+    background-color: #fff;
 }
 </style>

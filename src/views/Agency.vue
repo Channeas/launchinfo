@@ -118,7 +118,7 @@ export default {
 }
 
 .agency .launchList {
-    grid-template-columns: 1fr 1fr 160px 1fr 108px;
+    grid-template-columns: minmax(0, 1fr) 160px 160px minmax(0, 1fr) 140px;
 }
 
 .agency .headerImage {
@@ -134,6 +134,10 @@ export default {
 
     .launchList thead {
         display: none;
+    }
+
+    .launchList .buttonColumn {
+        padding-left: 0;
     }
 
     .launchList tr td {
