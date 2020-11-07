@@ -3,9 +3,6 @@ import callApi from "../callApi.js";
 
 // Function that returns a list of upcoming launches via a callback
 export default function getAgencies(route, callback) {
-    // TODO: Add Pagination
-    console.log(route);
-
     // Second callback, that parses the returned data and then enters it to the view's callback
     function handleData(rawData) {
         // Loop through the returned agencies
@@ -28,6 +25,15 @@ export default function getAgencies(route, callback) {
         callback(agencies);
     }
 
+    // Take into account what page the user is on
+    var offset = 0;
+    if (route.query.page) {
+        offset = (route.query.page - 1) * 15;
+    }
+
     // Get the data on upcoming launches from the API
-    callApi("agencies/?limit=15&mode=detailed&featured=true", handleData);
+    callApi(
+        `agencies/?limit=15&offset=${offset}&mode=detailed&featured=true`,
+        handleData
+    );
 }

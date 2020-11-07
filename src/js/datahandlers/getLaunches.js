@@ -6,9 +6,6 @@ import parseDate from "../functions/parseDate.js";
 
 // Function that returns a list of upcoming launches via a callback
 export default function getLaunches(route, callback) {
-    // TODO: Add Pagination
-    console.log(route);
-
     // Second callback, that parses the returned data and then enters it to the view's callback
     function handleData(rawData) {
         // Loop through the returned launches
@@ -42,6 +39,15 @@ export default function getLaunches(route, callback) {
         callback(upcomingLaunches);
     }
 
+    // Take into account what page the user is on
+    var offset = 0;
+    if (route.query.page) {
+        offset = (route.query.page - 1) * 15;
+    }
+
     // Get the data on upcoming launches from the API
-    callApi("launch/upcoming/?limit=15&mode=detailed", handleData);
+    callApi(
+        `launch/upcoming/?limit=15&offset=${offset}&mode=detailed`,
+        handleData
+    );
 }
