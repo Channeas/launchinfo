@@ -23,7 +23,7 @@
                 </p>
                 <List
                     :listHead="viewData.upcomingLaunches.listHead"
-                    :listData="viewData.upcomingLaunches.listData"
+                    :listData="launches"
                     :hasButton="true"
                     :buttonText="viewData.upcomingLaunches.buttonText"
                     class="launchList"
@@ -44,6 +44,9 @@ import ViewBody from "@/components/ViewBody.vue";
 import HeaderSection from "@/components/HeaderSection.vue";
 import DetailsSection from "@/components/DetailsSection.vue";
 import List from "@/components/List.vue";
+
+// Import the countdown calculation function
+import getCountdown from "../js/functions/getCountdown";
 
 export default {
     name: "Agency",
@@ -99,6 +102,18 @@ export default {
         // Method for displaying that the selected rocket was not found
         display404() {
             this.state = "404";
+        }
+    },
+    computed: {
+        launches: function() {
+            // Edit the array of launches to contain a countdown instead of a timestamp
+            const launches = [...this.viewData.upcomingLaunches.listData];
+            for (const launch of launches) {
+                const launchTime = launch.rowData[2];
+                launch.rowData[2] = getCountdown(launchTime, Date.now());
+            }
+
+            return launches;
         }
     }
 };
