@@ -30,6 +30,9 @@
 </template>
 
 <script>
+// Import the countdown calculation function
+import getCountdown from "../js/functions/getCountdown";
+
 export default {
     name: "HeaderSection",
     props: {
@@ -56,34 +59,11 @@ export default {
 
         // Returns how long is left until launch in countdown format
         timeCountDown: function() {
-            // Constants used in the calculations below
-            const dayInMilliseconds = 86400000,
-                hourInMilliseconds = 3600000,
-                minuteInMilliseconds = 60000;
-
-            // Get the launch timestamp
-            var launchTime = this.header.subTitle;
-
-            // Calculate the difference between right now and launch in milliseconds
-            var difference = launchTime - this.currentTimeStamp;
-
-            // Calculate the day
-            var days = Math.floor(difference / dayInMilliseconds);
-            difference -= days * dayInMilliseconds;
-
-            // Calculate the hour
-            var hours = Math.floor(difference / hourInMilliseconds);
-            difference -= hours * hourInMilliseconds;
-
-            // Calculate the minute
-            var minutes = Math.floor(difference / minuteInMilliseconds);
-            difference -= minutes * minuteInMilliseconds;
-
-            // Calculate the second
-            var seconds = Math.floor(difference / 1000);
-
-            // Return the time left in countdown format
-            return `T- ${days}D ${hours}H ${minutes}M ${seconds}S`;
+            return getCountdown(
+                this.header.subTitle,
+                this.currentTimeStamp,
+                true
+            );
         }
     }
 };
