@@ -28,12 +28,12 @@ export default function getAgencies(route, callback) {
     // Take into account what page the user is on
     var offset = 0;
     if (route.query.page) {
-        offset = (route.query.page - 1) * 15;
+        offset = (route.query.page - 1) * 12;
     }
 
     // Get the data on upcoming launches from the API
     callApi(
-        `agencies/?limit=15&offset=${offset}&mode=detailed&featured=true`,
+        `agencies/?limit=12&offset=${offset}&mode=detailed&featured=true`,
         handleData
     );
 }

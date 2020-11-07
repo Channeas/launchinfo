@@ -25,12 +25,12 @@ export default function getRockets(route, callback) {
     // Take into account what page the user is on
     var offset = 0;
     if (route.query.page) {
-        offset = (route.query.page - 1) * 15;
+        offset = (route.query.page - 1) * 12;
     }
 
     // Get the data on rockets from the API
     callApi(
-        `config/launcher/?limit=15&offset=${offset}&active=true`,
+        `config/launcher/?limit=12&offset=${offset}&active=true`,
         handleData
     );
 }
