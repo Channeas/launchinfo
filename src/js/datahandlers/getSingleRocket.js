@@ -9,6 +9,7 @@ import getSafeProperty from "../functions/getSafeProperty.js";
 
 // Import the function for filtering away empty details
 import filterDetails from "../functions/filterDetails.js";
+import calculateRatio from "../functions/calculateRatio.js";
 
 // Function that returns the data of a single rocket
 export default function getSingleRocket(route, callback, errorCallback) {
@@ -106,8 +107,10 @@ function parseDetails(rocket) {
     const totalLaunches = rocket.total_launch_count;
     var successRatio;
     if (totalLaunches != 0) {
-        successRatio = `${(rocket.successful_launches / totalLaunches) *
-            100} %`;
+        successRatio = calculateRatio(
+            rocket.successful_launches,
+            totalLaunches
+        );
     } else {
         successRatio = "Unknown";
     }

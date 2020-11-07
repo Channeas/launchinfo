@@ -10,6 +10,9 @@ import getSafeProperty from "../functions/getSafeProperty.js";
 // Import the function for filtering away empty details
 import filterDetails from "../functions/filterDetails.js";
 
+// Import the function for calculating ratios
+import calculateRatio from "../functions/calculateRatio.js";
+
 // Function that returns the data of a single agency
 export default function getSingleAgency(route, callback, errorCallback) {
     const agencyId = route.params.agencyId;
@@ -95,8 +98,10 @@ function parseHeader(agency) {
 function parseDetails(agency) {
     // Calculate the launch success ratio
     const totalLaunches = agency.total_launch_count;
-    const launchSuccessRatio = `${(agency.successful_launches / totalLaunches) *
-        100} %`;
+    const launchSuccessRatio = calculateRatio(
+        agency.successful_launches,
+        totalLaunches
+    );
 
     // Parse other details
     const details = [
@@ -116,9 +121,10 @@ function parseDetails(agency) {
 
     if (landingCount > 0) {
         // Calculate the landing usccess ratio
-        const landingSuccessRatio = `${(agency.successful_landings /
-            landingCount) *
-            100} %`;
+        const landingSuccessRatio = calculateRatio(
+            agency.successful_landings,
+            landingCount
+        );
         details.push({
             rowData: ["Booster landing success ratio:", landingSuccessRatio]
         });
