@@ -99,6 +99,7 @@ export default {
 .headerDescription {
     font-size: 20px;
     margin-bottom: 0;
+    line-height: 1.4em;
 }
 
 .headerButton {
