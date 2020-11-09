@@ -4,13 +4,27 @@
         <div class="menuContent">
             <router-link to="/" class="menuTitle">LaunchInfo</router-link>
             <div class="menuLinks">
-                <router-link to="/agencies" class="menuButton"
+                <router-link
+                    to="/agencies"
+                    class="menuButton"
+                    :class="{ highlighted: this.$route.name == 'Agencies' }"
                     >Agencies</router-link
                 >
-                <router-link to="/rockets" class="menuButton"
+                <router-link
+                    to="/rockets"
+                    class="menuButton"
+                    :class="{ highlighted: this.$route.name == 'Rockets' }"
                     >Rockets</router-link
                 >
-                <router-link to="/launches" class="menuButton"
+                <router-link
+                    to="/launches"
+                    class="menuButton"
+                    :class="{
+                        highlighted:
+                            this.$route.name == null ||
+                            this.$route.name == 'Launches landing' ||
+                            this.$route.name == 'Launches'
+                    }"
                     >Launches</router-link
                 >
             </div>
@@ -20,7 +34,10 @@
 
 <script>
 export default {
-    name: "Menu"
+    name: "Menu",
+    created() {
+        console.log(this.$route);
+    }
 };
 </script>
 
@@ -61,5 +78,9 @@ export default {
 
 .menuButton:first-of-type {
     margin-left: 0;
+}
+
+.highlighted {
+    font-weight: 700;
 }
 </style>
