@@ -96,6 +96,10 @@ export default {
         grid-template-columns: 1fr;
     }
 
+    .detailsList td {
+        padding: 15px 0;
+    }
+
     .detailsList tr td:first-of-type {
         border-bottom: none;
         padding-bottom: 0;
