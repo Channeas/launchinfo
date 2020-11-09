@@ -2,16 +2,19 @@
     <div id="app">
         <Menu></Menu>
         <router-view />
+        <Attribution></Attribution>
     </div>
 </template>
 
 <script>
 import Menu from "@/components/Menu.vue";
+import Attribution from "@/components/Attribution.vue";
 
 export default {
     name: "App",
     components: {
-        Menu
+        Menu,
+        Attribution
     }
 };
 </script>
