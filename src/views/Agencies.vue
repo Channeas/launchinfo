@@ -33,7 +33,6 @@ export default {
                 urlPrefix: "/agencies/"
             },
             pageData: {
-                currentPage: 0,
                 itemCount: 0,
                 itemsPerPage: 0
             }

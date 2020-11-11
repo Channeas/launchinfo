@@ -66,7 +66,7 @@ export default {
                 lastPage = { value: this.pageCount, active: false };
 
             // There are four different possible cases for the buttons
-            if (this.pageCount < 12) {
+            if (this.pageCount < 10) {
                 // If there are less than 12 pages, all are shown
                 pages = this.createPages(1, this.pageCount);
             } else if (this.currentPage < 6) {
@@ -80,8 +80,8 @@ export default {
             } else {
                 // If the user is somewhere in the middle of the pages, the first page, the last page, and 3 pages before and after the current page are shown
                 pages = this.createPages(
-                    this.currentPage - 3,
-                    this.currentPage + 3
+                    this.currentPage - 2,
+                    this.currentPage + 2
                 );
                 pages.unshift(firstPage, hiddenPages);
                 pages.push(hiddenPages, lastPage);
