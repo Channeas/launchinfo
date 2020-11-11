@@ -21,7 +21,7 @@
         <a
             class="stepButton"
             v-if="currentPage != pageCount"
-            :href="`?page=${currentPage - 1}`"
+            :href="`?page=${currentPage + 1}`"
             >Next &rarr;</a
         >
         <div class="stepButton" v-else>Next &rarr;</div>
