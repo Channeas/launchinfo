@@ -5,6 +5,7 @@
             <ListView :title="title">
                 <ImageList :contentList="viewData"></ImageList>
             </ListView>
+            <PageNavigation :pageData="pageData"></PageNavigation>
         </ViewBody>
     </div>
 </template>
@@ -14,13 +15,15 @@
 import ViewBody from "@/components/ViewBody.vue";
 import ListView from "@/components/ListView.vue";
 import ImageList from "@/components/ImageList.vue";
+import PageNavigation from "@/components/PageNavigation.vue";
 
 export default {
     name: "Rockets",
     components: {
         ViewBody,
         ListView,
-        ImageList
+        ImageList,
+        PageNavigation
     },
     data: function() {
         return {
@@ -28,6 +31,10 @@ export default {
             viewData: {
                 items: [],
                 urlPrefix: "/rockets/"
+            },
+            pageData: {
+                itemCount: 0,
+                itemsPerPage: 0
             }
         };
     },
@@ -46,7 +53,8 @@ export default {
     methods: {
         // Callback method for saving requested data asynchronously
         saveData(data) {
-            this.viewData.items = data;
+            this.viewData.items = data.items;
+            this.pageData = data.pageData;
         }
     }
 };
