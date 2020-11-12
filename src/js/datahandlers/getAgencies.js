@@ -22,8 +22,12 @@ export default function getAgencies(route, callback) {
                 title: `${agency.abbrev} - ${agency.name}`,
                 subTitle: agency.type,
                 id: agency.id,
-                description: `Founded in ${agency.founding_year}`
+                description: "Unknown founding date"
             };
+
+            if (agency.founding_year) {
+                res.description = `Founded in ${agency.founding_year}`;
+            }
 
             // Push the parsed launch into the list of launches
             agencies.push(res);
