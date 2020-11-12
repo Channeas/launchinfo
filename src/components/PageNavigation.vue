@@ -49,7 +49,7 @@ export default {
             if (this.$route.query.page) {
                 return parseInt(this.$route.query.page);
             } else {
-                return 0;
+                return 1;
             }
         },
         // The total amount of pages
