@@ -106,15 +106,10 @@ function parseHeader(rocket) {
 function parseDetails(rocket) {
     // Calculate the launch success rate
     const totalLaunches = rocket.total_launch_count;
-    var successRatio;
-    if (totalLaunches != 0) {
-        successRatio = calculateRatio(
-            rocket.successful_launches,
-            totalLaunches
-        );
-    } else {
-        successRatio = "Unknown";
-    }
+    const successRatio = calculateRatio(
+        rocket.successful_launches,
+        totalLaunches
+    );
 
     // Parse other details
     const details = [
