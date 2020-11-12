@@ -6,8 +6,16 @@ import parseDate from "../functions/parseDate.js";
 
 // Function that returns a list of upcoming launches via a callback
 export default function getLaunches(route, callback) {
+    const itemsPerPage = 12;
+
     // Second callback, that parses the returned data and then enters it to the view's callback
     function handleData(rawData) {
+        // Parse the page data
+        const pageData = {
+            itemCount: rawData.count,
+            itemsPerPage: itemsPerPage
+        };
+
         // Loop through the returned launches
         const upcomingLaunches = [];
         for (const launch of rawData.results) {
@@ -36,7 +44,7 @@ export default function getLaunches(route, callback) {
         }
 
         // Return the data using the callback that was sent by the view
-        callback(upcomingLaunches);
+        callback({ items: upcomingLaunches, pageData: pageData });
     }
 
     // Take into account what page the user is on
