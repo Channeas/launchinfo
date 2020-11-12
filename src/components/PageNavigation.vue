@@ -6,9 +6,11 @@
             class="stepButton"
             v-if="currentPage != 1"
             :href="`?page=${currentPage - 1}`"
-            >&larr; Prev</a
-        >
-        <div class="stepButton" v-else>&larr; Prev</div>
+            ><img src="../assets/chevron-left.svg"
+        /></a>
+        <div class="stepButton" v-else>
+            <img src="../assets/chevron-left.svg" />
+        </div>
 
         <!-- Relative buttons -->
         <pageNavButton
@@ -22,9 +24,12 @@
             class="stepButton"
             v-if="currentPage != pageCount"
             :href="`?page=${currentPage + 1}`"
-            >Next &rarr;</a
-        >
-        <div class="stepButton" v-else>Next &rarr;</div>
+            ><img src="../assets/chevron-right.svg"
+        /></a>
+
+        <div class="stepButton" v-else>
+            <img src="../assets/chevron-right.svg" />
+        </div>
     </div>
 </template>
 
@@ -123,10 +128,13 @@ export default {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #1885f2;
-    color: #fff;
+    background-color: #fff;
     border-radius: 5px;
     text-decoration: none;
+    vertical-align: middle;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
 }
 
 .stepButton:first-of-type {
