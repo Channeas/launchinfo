@@ -33,8 +33,8 @@ export default {
                 urlPrefix: "/launches/"
             },
             pageData: {
-                itemCount: 0,
-                itemsPerPage: 0
+                itemCount: 1,
+                itemsPerPage: 1
             }
         };
     },
