@@ -56,6 +56,8 @@ export default {
     /* height: 430px; */
     background-color: #fff;
     border-radius: 5px;
+    -webkit-box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
     box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
 }
 

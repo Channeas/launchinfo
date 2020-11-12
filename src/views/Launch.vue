@@ -81,6 +81,8 @@ export default {
     margin-top: 30px;
     padding: var(--page-padding);
     border-radius: 5px;
+    -webkit-box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
     box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
 }
 </style>
