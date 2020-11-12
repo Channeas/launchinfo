@@ -31,7 +31,8 @@ export default function getSingleAgency(route, callback, errorCallback) {
         // Return the retrieved data
         callback({
             header: parseHeader(agency),
-            details: details
+            details: details,
+            pageTitle: agency.name
         });
     }
 

@@ -55,7 +55,11 @@ export default function getSingleLaunch(route, callback, errorCallback) {
             },
 
             // Data to be displayed in the details list (retrieved below)
-            details: details
+            details: details,
+            pageTitle: launch.name.substring(
+                launch.name.indexOf("|") + 2,
+                launch.name.length
+            )
         };
 
         // Return the data using the callback that was sent by the view

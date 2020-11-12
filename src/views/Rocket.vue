@@ -96,6 +96,11 @@ export default {
                 this.viewData.upcomingLaunches = data.upcomingLaunches;
             }
 
+            // Potentially update the page title
+            if (data.pageTitle) {
+                document.title = data.pageTitle;
+            }
+
             this.state = "loaded";
         },
 

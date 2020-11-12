@@ -27,7 +27,8 @@ export default function getSingleRocket(route, callback, errorCallback) {
         // Return the retrieved data
         callback({
             header: parseHeader(rocket),
-            details: details
+            details: details,
+            pageTitle: rocket.full_name
         });
     }
 

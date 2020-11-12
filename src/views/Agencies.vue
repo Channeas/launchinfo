@@ -46,6 +46,9 @@ export default {
     created() {
         // Request the data from the datamanager (is returned using the saveData method as a callback)
         this.getDataFromApi(this.$route, this.saveData);
+
+        // Update the page title
+        document.title = "Agencies";
     },
     methods: {
         // Method for saving requested data asynchronously

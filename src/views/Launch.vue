@@ -60,6 +60,11 @@ export default {
         saveData(data) {
             this.viewData = data;
             this.state = "loaded";
+
+            // Potentially update the page title
+            if (data.pageTitle) {
+                document.title = data.pageTitle;
+            }
         },
 
         // Method for displaying that the selected rocket was not found
