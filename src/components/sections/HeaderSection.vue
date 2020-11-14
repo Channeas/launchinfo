@@ -145,4 +145,12 @@ export default {
         border-radius: 0;
     }
 }
+
+@media (max-width: 550px) {
+    .headerSection .subSection:first-of-type {
+        margin: -30px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
 </style>
