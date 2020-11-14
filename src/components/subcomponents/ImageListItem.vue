@@ -21,7 +21,7 @@
 
 <script>
 // Import the countdown calculation function
-import getCountdown from "../js/functions/getCountdown";
+import getCountdown from "../../js/functions/getCountdown";
 
 export default {
     props: {

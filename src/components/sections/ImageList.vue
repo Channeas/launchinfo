@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ImageListItem from "./ImageListItem.vue";
+import ImageListItem from "../subcomponents/ImageListItem.vue";
 
 export default {
     name: "ImageList",

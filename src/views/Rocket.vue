@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import ViewBody from "@/components/ViewBody.vue";
-import HeaderSection from "@/components/HeaderSection.vue";
-import DetailsSection from "@/components/DetailsSection.vue";
-import List from "@/components/List.vue";
+import ViewBody from "@/components/sections/ViewBody.vue";
+import HeaderSection from "@/components/sections/HeaderSection.vue";
+import DetailsSection from "@/components/sections/DetailsSection.vue";
+import List from "@/components/subcomponents/List.vue";
 
 // Import the countdown calculation function
 import getCountdown from "../js/functions/getCountdown";

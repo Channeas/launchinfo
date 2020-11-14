@@ -6,10 +6,10 @@
             class="stepButton"
             v-if="currentPage != 1"
             :href="`?page=${currentPage - 1}`"
-            ><img src="../assets/chevron-left.svg"
+            ><img src="../../assets/chevron-left.svg"
         /></a>
         <div class="stepButton" v-else>
-            <img src="../assets/chevron-left.svg" />
+            <img src="../../assets/chevron-left.svg" />
         </div>
 
         <!-- Relative buttons -->
@@ -24,18 +24,18 @@
             class="stepButton"
             v-if="currentPage != pageCount"
             :href="`?page=${currentPage + 1}`"
-            ><img src="../assets/chevron-right.svg"
+            ><img src="../../assets/chevron-right.svg"
         /></a>
 
         <div class="stepButton" v-else>
-            <img src="../assets/chevron-right.svg" />
+            <img src="../../assets/chevron-right.svg" />
         </div>
     </div>
 </template>
 
 <script>
 // Import the components used
-import PageNavButton from "@/components/PageNavButton.vue";
+import PageNavButton from "./PageNavButton.vue";
 
 export default {
     name: "PageNavigation",

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu.vue";
-import Attribution from "@/components/Attribution.vue";
+import Menu from "@/components/sections/Menu.vue";
+import Attribution from "@/components/sections/Attribution.vue";
 
 export default {
     name: "App",

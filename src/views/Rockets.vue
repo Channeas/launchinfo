@@ -12,10 +12,10 @@
 
 <script>
 // Import the components used
-import ViewBody from "@/components/ViewBody.vue";
-import ListView from "@/components/ListView.vue";
-import ImageList from "@/components/ImageList.vue";
-import PageNavigation from "@/components/PageNavigation.vue";
+import ViewBody from "@/components/sections/ViewBody.vue";
+import ImageList from "@/components/sections/ImageList.vue";
+import ListView from "@/components/subcomponents/ListView.vue";
+import PageNavigation from "@/components/subcomponents/PageNavigation.vue";
 
 export default {
     name: "Rockets",

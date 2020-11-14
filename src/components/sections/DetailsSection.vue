@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import List from "./List.vue";
+import List from "../subcomponents/List.vue";
 
 export default {
     props: {

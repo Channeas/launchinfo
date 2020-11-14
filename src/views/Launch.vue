@@ -26,9 +26,9 @@
 </template>
 
 <script>
-import ViewBody from "@/components/ViewBody.vue";
-import HeaderSection from "@/components/HeaderSection.vue";
-import DetailsSection from "@/components/DetailsSection.vue";
+import ViewBody from "@/components/sections/ViewBody.vue";
+import HeaderSection from "@/components/sections/HeaderSection.vue";
+import DetailsSection from "@/components/sections/DetailsSection.vue";
 
 export default {
     name: "Launch",
