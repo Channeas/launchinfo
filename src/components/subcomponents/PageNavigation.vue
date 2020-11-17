@@ -38,21 +38,10 @@
 import PageNavButton from "./PageNavButton.vue";
 
 export default {
-    name: "PageNavigation",
     components: {
         PageNavButton
     },
-    data: function() {
-        return {
-            buttonCount: 3
-        };
-    },
-    props: {
-        pageData: {
-            type: Object,
-            required: true
-        }
-    },
+
     computed: {
         // The current page that the user is on
         currentPage: function() {
@@ -62,12 +51,14 @@ export default {
                 return 1;
             }
         },
+
         // The total amount of pages
         pageCount: function() {
             return Math.ceil(
                 this.pageData.itemCount / this.pageData.itemsPerPage
             );
         },
+
         pages: function() {
             // Create a representation of the different pages, to be displayed as PageNavButtons
             var pages = [];
@@ -108,15 +99,24 @@ export default {
             return pages;
         }
     },
+
     created() {
         // Calculate how many buttons can be shown given the current screen width
         this.calculateButtonCount();
         window.addEventListener("resize", this.calculateButtonCount);
     },
+
+    data: function() {
+        return {
+            buttonCount: 3
+        };
+    },
+
     destroyed() {
         // Stop calculating how many buttons can be shown when this component is destroyed
         window.removeEventListener("resize", this.calculateButtonCount);
     },
+
     methods: {
         createPages(startPage, endPage) {
             // Loop through the range, creating one page for each number
@@ -143,6 +143,15 @@ export default {
             } else {
                 this.buttonCount = 3;
             }
+        }
+    },
+
+    name: "PageNavigation",
+
+    props: {
+        pageData: {
+            type: Object,
+            required: true
         }
     }
 };

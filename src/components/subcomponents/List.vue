@@ -24,6 +24,12 @@
 import ListItem from "./ListItem";
 
 export default {
+    components: {
+        ListItem
+    },
+
+    name: "List",
+
     props: {
         listHead: {
             type: Array,
@@ -44,11 +50,7 @@ export default {
             type: String,
             required: false
         }
-    },
-    components: {
-        ListItem
-    },
-    name: "List"
+    }
 };
 </script>
 

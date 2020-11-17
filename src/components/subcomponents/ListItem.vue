@@ -18,6 +18,8 @@
 
 <script>
 export default {
+    name: "ListItem",
+
     props: {
         rowItem: {
             type: Object,
@@ -31,8 +33,7 @@ export default {
             type: String,
             required: false
         }
-    },
-    name: "ListItem"
+    }
 };
 </script>
 

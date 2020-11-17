@@ -24,6 +24,18 @@
 import getCountdown from "../../js/functions/getCountdown";
 
 export default {
+    computed: {
+        imageSource: function() {
+            return `background-image: url("${this.content.imageSrc}");`;
+        },
+
+        timeCountDown: function() {
+            return getCountdown(this.content.subTitle, this.currentTimeStamp);
+        }
+    },
+
+    name: "ImageListItem",
+
     props: {
         content: {
             type: Object,
@@ -36,15 +48,6 @@ export default {
         currentTimeStamp: {
             type: Number,
             required: false
-        }
-    },
-    computed: {
-        imageSource: function() {
-            return `background-image: url("${this.content.imageSrc}");`;
-        },
-
-        timeCountDown: function() {
-            return getCountdown(this.content.subTitle, this.currentTimeStamp);
         }
     }
 };

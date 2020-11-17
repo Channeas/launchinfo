@@ -57,7 +57,6 @@
 
 <script>
 export default {
-    name: "Menu",
     created() {
         // Listen to clicks (to potentially close the menu)
         document.addEventListener("click", this.trackClicks);
@@ -74,15 +73,15 @@ export default {
         }, 300);
     },
 
-    destroyed() {
-        // Stop listening to clicks
-        document.removeEventListener("click", this.trackClicks);
-    },
-
     data: function() {
         return {
             menuToggled: false
         };
+    },
+
+    destroyed() {
+        // Stop listening to clicks
+        document.removeEventListener("click", this.trackClicks);
     },
 
     methods: {
@@ -110,7 +109,9 @@ export default {
                 return this.hasParent(element.parentNode, className, index++);
             }
         }
-    }
+    },
+
+    name: "Menu"
 };
 </script>
 

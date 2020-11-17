@@ -34,24 +34,6 @@
 import getCountdown from "../../js/functions/getCountdown";
 
 export default {
-    name: "HeaderSection",
-    props: {
-        header: {
-            type: Object,
-            required: true
-        }
-    },
-    data: function() {
-        return {
-            currentTimeStamp: Date.now()
-        };
-    },
-    created() {
-        // Update the current time every second
-        window.setInterval(() => {
-            this.currentTimeStamp = Date.now();
-        }, 1000);
-    },
     computed: {
         imageSource: function() {
             return `background-image: url("${this.header.imageSrc}");`;
@@ -64,6 +46,28 @@ export default {
                 this.currentTimeStamp,
                 true
             );
+        }
+    },
+
+    created() {
+        // Update the current time every second
+        window.setInterval(() => {
+            this.currentTimeStamp = Date.now();
+        }, 1000);
+    },
+
+    data: function() {
+        return {
+            currentTimeStamp: Date.now()
+        };
+    },
+
+    name: "HeaderSection",
+
+    props: {
+        header: {
+            type: Object,
+            required: true
         }
     }
 };

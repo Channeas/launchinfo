@@ -14,15 +14,14 @@
 </template>
 
 <script>
+// Import other components
 import List from "../subcomponents/List.vue";
 
 export default {
-    props: {
-        detailsData: {
-            type: Array,
-            required: true
-        }
+    components: {
+        List
     },
+
     computed: {
         // Split the details data into two arrays for the two lists
         list1Data: function() {
@@ -35,8 +34,12 @@ export default {
             );
         }
     },
-    components: {
-        List
+
+    props: {
+        detailsData: {
+            type: Array,
+            required: true
+        }
     }
 };
 </script>

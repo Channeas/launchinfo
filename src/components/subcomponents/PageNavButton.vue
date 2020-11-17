@@ -17,16 +17,18 @@
 
 <script>
 export default {
+    computed: {
+        link: function() {
+            return `/agencies?page=${this.pageNumber}`;
+        }
+    },
+
     name: "PageNavButton",
+
     props: {
         buttonData: {
             type: Object,
             required: true
-        }
-    },
-    computed: {
-        link: function() {
-            return `/agencies?page=${this.pageNumber}`;
         }
     }
 };

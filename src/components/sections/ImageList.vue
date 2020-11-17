@@ -12,29 +12,34 @@
 </template>
 
 <script>
+// Import other components
 import ImageListItem from "../subcomponents/ImageListItem.vue";
 
 export default {
-    name: "ImageList",
     components: {
         ImageListItem
     },
-    props: {
-        contentList: {
-            type: Object,
-            required: true
-        }
-    },
-    data: function() {
-        return {
-            currentTimeStamp: Date.now()
-        };
-    },
+
     created() {
         // Update the current time every second
         window.setInterval(() => {
             this.currentTimeStamp = Date.now();
         }, 1000);
+    },
+
+    data: function() {
+        return {
+            currentTimeStamp: Date.now()
+        };
+    },
+
+    name: "ImageList",
+
+    props: {
+        contentList: {
+            type: Object,
+            required: true
+        }
     }
 };
 </script>
