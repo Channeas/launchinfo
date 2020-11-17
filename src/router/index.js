@@ -76,6 +76,14 @@ const routes = [
         props: {
             getDataFromApi: getDataFromApi
         }
+    },
+
+    // 404
+    {
+        // Vue 3 fix: path: "/pathMatch(.*)*",
+        path: "*",
+        component: () => import("@/views/Error404.vue"),
+        name: "Error_404"
     }
 ];
 
