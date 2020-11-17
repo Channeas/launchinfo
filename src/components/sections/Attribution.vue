@@ -35,7 +35,12 @@ export default {
     color: #1885f2;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+    /* Make sure the attribution is visible (not hid by the menu) */
+    .attribution {
+        padding-bottom: 80px;
+    }
+
     .attributionSection {
         display: block;
     }
