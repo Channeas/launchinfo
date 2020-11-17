@@ -253,8 +253,8 @@ export default {
         z-index: 999;
         transform: translateY(0) rotateZ(0deg);
         transition: 0.3s;
-
-        /* TODO: Add other versions */
+        -webkit-box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.15);
         box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.15);
     }
 
