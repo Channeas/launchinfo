@@ -69,7 +69,11 @@ export default {
 
         // Method for displaying that the selected rocket was not found
         display404() {
+            // Update the state
             this.state = "404";
+
+            // Update the page title
+            document.title = "Launch not found";
         }
     }
 };

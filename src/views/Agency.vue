@@ -101,12 +101,17 @@ export default {
                 document.title = data.pageTitle;
             }
 
+            // Update the state
             this.state = "loaded";
         },
 
         // Method for displaying that the selected rocket was not found
         display404() {
+            // Update the state
             this.state = "404";
+
+            // Update the page title
+            document.title = "Agency not found";
         }
     },
     computed: {
