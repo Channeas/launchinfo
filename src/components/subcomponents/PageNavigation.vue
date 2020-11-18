@@ -64,34 +64,38 @@ export default {
             var pages = [];
             const hiddenPages = { value: "...", active: false },
                 firstPage = { value: 1, active: false },
-                lastPage = { value: this.pageCount, active: false };
+                lastPage = { value: this.pageCount, active: false },
+                pageCount = this.pageCount,
+                currentPage = this.currentPage,
+                buttonCount = this.buttonCount;
 
             // There are four different possible cases for the buttons
-            if (this.pageCount < this.buttonCount * 3 + 1) {
+            if (pageCount < buttonCount * 3 + 1) {
                 // If there are less than 3x the current buttonCount + 1 pages, all are shown
-                pages = this.createPages(1, this.pageCount);
-            } else if (this.currentPage < this.buttonCount * 2 + 2) {
+                pages = this.createPages(1, pageCount);
+            } else if (currentPage < buttonCount * 2 + 2) {
                 // If the user is at the start of the pages, pages 1-7 as well as the last page are shown
-                pages = this.createPages(1, this.buttonCount * 2 + 1);
+                pages = this.createPages(1, buttonCount * 2 + 1);
+
+                // Add "..." and the last page
                 pages.push(hiddenPages, lastPage);
-            } else if (
-                this.currentPage >
-                this.pageCount - this.buttonCount * 2 - 1
-            ) {
+            } else if (currentPage > pageCount - buttonCount * 2 - 1) {
                 // If the user is at the end of the pages, the first page as well as pages last - 6 to last are shown
                 pages = this.createPages(
-                    this.pageCount - this.buttonCount * 2,
-                    this.pageCount
+                    pageCount - buttonCount * 2,
+                    pageCount
                 );
+
+                // Add the first page and "..."
                 pages.unshift(firstPage, hiddenPages);
             } else {
-                const test = this.buttonCount - 1;
-
                 // If the user is somewhere in the middle of the pages, the first page, the last page, and 3 pages before and after the current page are shown
                 pages = this.createPages(
-                    this.currentPage - test,
-                    this.currentPage + test
+                    currentPage - buttonCount - 1,
+                    currentPage + buttonCount - 1
                 );
+
+                // Add first and last pages, as well as "..."
                 pages.unshift(firstPage, hiddenPages);
                 pages.push(hiddenPages, lastPage);
             }
