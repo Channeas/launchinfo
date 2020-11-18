@@ -22,7 +22,8 @@ export default function getRockets(route, callback) {
                 imageTitle: rocket.manufacturer.name,
                 title: rocket.name,
                 subTitle: rocket.reusable ? "Reusable" : "Not reusable",
-                id: rocket.id
+                id: rocket.id,
+                type: "Rocket"
             });
         }
 

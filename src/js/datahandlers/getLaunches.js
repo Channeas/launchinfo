@@ -29,7 +29,8 @@ export default function getLaunches(route, callback) {
                 ),
                 subTitle: parseDate(launch.window_start),
                 subTitleAsCountdown: true,
-                id: launch.id
+                id: launch.id,
+                type: "Launch"
             };
 
             // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)

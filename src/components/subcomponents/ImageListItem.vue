@@ -1,7 +1,9 @@
 <!-- Component that is the basis for the ImageList.vue component -->
 <template>
     <div class="imageListItem">
-        <div class="imageSection" :style="imageSource"></div>
+        <div class="imageSection" :style="imageStyle">
+            <img :src="content.imageSrc" :alt="imageAlt" />
+        </div>
         <div class="textSection">
             <p class="location">
                 {{ content.imageTitle }}
@@ -25,8 +27,23 @@ import getCountdown from "../../js/functions/getCountdown";
 
 export default {
     computed: {
-        imageSource: function() {
-            return `background-image: url("${this.content.imageSrc}");`;
+        // Computed alt text for the image, telling what rocket is pictured
+        imageAlt: function() {
+            if (this.content.type == "Launch") {
+                const desc = this.content.description;
+                return desc.substring(desc.indexOf("|") + 2, desc.length);
+            } else {
+                return this.content.title;
+            }
+        },
+
+        // CSS style change that centers the image for agency logos
+        imageStyle: function() {
+            if (this.content.type == "Agency") {
+                return "align-items: center;";
+            } else {
+                return "";
+            }
         },
 
         timeCountDown: function() {
@@ -54,9 +71,9 @@ export default {
 </script>
 
 <style>
+/* The card */
 .imageListItem {
     max-width: 360px;
-    /* height: 430px; */
     background-color: #fff;
     border-radius: 5px;
     -webkit-box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
@@ -64,18 +81,26 @@ export default {
     box-shadow: 0px 2px 11px -5px rgba(0, 0, 0, 0.52);
 }
 
+/* The top section of the card, containing the image */
 .imageSection {
     height: 210px;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: cover;
     border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
 }
 
+/* The actual image */
+.imageSection img {
+    width: 100%;
+}
+
+/* The bottom section of teh card, containing the text */
 .textSection {
     padding: 25px;
 }
 
+/* The text right below the image */
 .location {
     font-size: 13px;
     font-weight: bold;
@@ -85,6 +110,7 @@ export default {
     overflow: hidden;
 }
 
+/* The title of the card */
 .title {
     font-size: 32px;
     font-weight: bold;
@@ -93,6 +119,7 @@ export default {
     overflow: hidden;
 }
 
+/* The subtitle (which may contain a countdown) */
 .subTitle {
     font-size: 22px;
     font-weight: bold;
@@ -101,12 +128,14 @@ export default {
     overflow: hidden;
 }
 
+/* The smallest text on the card */
 .rocket {
     margin: 15px 0;
     white-space: nowrap;
     overflow: hidden;
 }
 
+/* The button leading to the individual page */
 .cardButton {
     margin: 0;
     padding: 10px 0;
