@@ -49,17 +49,20 @@ export default {
         }
     },
 
-    created() {
-        // Update the current time every second
-        window.setInterval(() => {
-            this.currentTimeStamp = Date.now();
-        }, 1000);
-    },
-
     data: function() {
         return {
-            currentTimeStamp: Date.now()
+            currentTimeStamp: Date.now(),
+
+            // Update the current time every second
+            timeInterval: window.setInterval(() => {
+                this.currentTimeStamp = Date.now();
+            }, 1000)
         };
+    },
+
+    destroyed() {
+        // Clear the interval that updates the time when the component is destroyed
+        window.clearInterval(this.timeInterval);
     },
 
     name: "HeaderSection",
