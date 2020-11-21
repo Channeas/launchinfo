@@ -98,7 +98,10 @@ export default {
 
         // Recursive function for finding if an element has a parent with a certain class
         hasParent(element, className, index = 0) {
-            if (element.classList.contains(className)) {
+            // Make sure the element exists (and hasn't been destroyed due to a redirection)
+            if (!element) {
+                return false;
+            } else if (element.classList.contains(className)) {
                 // Check if the current element has the requested class
                 return true;
             } else if (element.tagName == "BODY" || index > 100) {
