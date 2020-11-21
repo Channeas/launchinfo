@@ -30,8 +30,6 @@ export default function getAgencies(route, callback) {
                 res.description = `Founded in ${agency.founding_year}`;
             }
 
-            console.log(agency);
-            console.log(res);
             // Push the parsed launch into the list of launches
             agencies.push(res);
         }

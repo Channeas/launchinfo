@@ -9,7 +9,6 @@ import getSingleAgency from "./datahandlers/getSingleAgency.js";
 /* Function used by the views to get data from the API. 
    It calls the appropriate subfunction depending on the current route */
 export default function getDataFromApi(route, callback, errorCallback) {
-    console.log(route);
     // Determine where the call for data comes from and call the appropriate function
     switch (route.name) {
         case "Launches landing": // The landing (root /) page
