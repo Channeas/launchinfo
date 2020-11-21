@@ -29,6 +29,12 @@ export default function getSingleLaunch(route, callback, errorCallback) {
                 : getSafeProperty("launch_service_provider.abbrev", launch)
         }`;
 
+        // Create the secondary header button text
+        const secondaryButtonText = `Learn more about ${getSafeProperty(
+            "rocket.configuration.name",
+            launch
+        )}`;
+
         // Parse the details
         const details = parseDetails(launch);
 
@@ -47,11 +53,20 @@ export default function getSingleLaunch(route, callback, errorCallback) {
                 subTitleAsCountdown: true,
                 smallTitle: providerName,
                 description: getSafeProperty("mission.description", launch),
+
+                // Primary button leading to the agency
                 buttonUrl: `/agencies/${getSafeProperty(
                     "launch_service_provider.id",
                     launch
                 )}`,
-                buttonText: buttonText
+                buttonText: buttonText,
+
+                // Secondary button leading to the rocket
+                secondaryButtonUrl: `/rockets/${getSafeProperty(
+                    "rocket.configuration.id",
+                    launch
+                )}`,
+                secondaryButtonText: secondaryButtonText
             },
 
             // Data to be displayed in the details list (retrieved below)

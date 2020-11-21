@@ -1,10 +1,12 @@
 <!-- Component that is used at the top of the detail pages -->
 <template>
     <div class="headerSection">
+        <!-- Image section -->
         <div class="subSection">
-            <!-- <img class="headerImage" :src="header.imageSrc" /> -->
             <div class="headerImage" :style="imageSource"></div>
         </div>
+
+        <!-- Text section -->
         <div class="subSection">
             <p class="generalTitle">{{ header.title }}</p>
             <p
@@ -18,12 +20,23 @@
             </p>
             <p class="headerSmallTitle">{{ header.smallTitle }}</p>
             <p class="headerDescription">{{ header.description }}</p>
+
+            <!-- Primary button, leading to the space agency -->
             <router-link
                 v-if="header.buttonUrl"
                 :to="header.buttonUrl"
                 class="headerButton"
             >
                 {{ header.buttonText }}
+            </router-link>
+
+            <!-- Secondary button, leading to the rocket (only visible from a launch) -->
+            <router-link
+                v-if="header.secondaryButtonUrl"
+                :to="header.secondaryButtonUrl"
+                class="headerSecondaryButton"
+            >
+                {{ header.secondaryButtonText }}
             </router-link>
         </div>
     </div>
@@ -109,6 +122,7 @@ export default {
     line-height: 1.4em;
 }
 
+/* Primary header button */
 .headerButton {
     background-color: #1885f2;
     color: #fff;
@@ -119,6 +133,17 @@ export default {
     text-decoration: none;
     margin-top: 1em;
     display: inline-block;
+}
+
+/* Secondary header button */
+.headerSecondaryButton {
+    color: #1885f2;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin-top: none;
+    display: block;
 }
 
 /* Responsiveness */
