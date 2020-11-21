@@ -76,6 +76,11 @@ body {
         box-shadow: none !important;
         margin-top: 0 !important;
     }
+
+    /* Center the general title on small devices */
+    .generalTitle {
+        text-align: center;
+    }
 }
 
 @media (max-width: 550px) {
