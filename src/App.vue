@@ -63,7 +63,7 @@ body {
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
     :root {
         --page-padding: 0;
     }
