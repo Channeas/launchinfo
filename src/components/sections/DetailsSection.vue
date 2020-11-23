@@ -85,7 +85,7 @@ export default {
         border-top: 1px solid #e2e2e2;
     }
 
-    .detailsBlock:first-of-type tr:first-of-type td:first-of-type {
+    .detailsBlock:first-of-type tr:first-of-type {
         padding-top: 0;
     }
 
