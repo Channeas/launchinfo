@@ -61,9 +61,14 @@ export default {
             this.viewData = data;
             this.state = "loaded";
 
-            // Potentially update the page title
+            // Potentially update the page title and the meta description
             if (data.pageTitle) {
                 document.title = data.pageTitle;
+
+                // Update the meta description
+                document
+                    .querySelector("meta[name='description']")
+                    .setAttribute("content", `Learn about ${data.pageTitle}`);
             }
         },
 

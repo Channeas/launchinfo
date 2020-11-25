@@ -49,6 +49,11 @@ export default {
 
         // Update the page title
         document.title = "Upcoming launches";
+
+        // Update the meta description
+        document
+            .querySelector("meta[name='description']")
+            .setAttribute("content", "Find upcoming rocket launches");
     },
     methods: {
         // Method for saving requested data asynchronously

@@ -49,6 +49,11 @@ export default {
 
         // Update the page title
         document.title = "Agencies";
+
+        // Update the meta description
+        document
+            .querySelector("meta[name='description']")
+            .setAttribute("content", "Learn about space agencies");
     },
     methods: {
         // Method for saving requested data asynchronously

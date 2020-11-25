@@ -20,6 +20,11 @@ export default {
     created() {
         // Update the page title
         document.title = "404 - page not found";
+
+        // Update the meta description (to the default one)
+        document
+            .querySelector("meta[name='description']")
+            .setAttribute("content", "Learn about rocket launches");
     }
 };
 </script>

@@ -49,6 +49,11 @@ export default {
 
         // Update the page title
         document.title = "Rockets";
+
+        // Update the meta description
+        document
+            .querySelector("meta[name='description']")
+            .setAttribute("content", "Learn about rocket models");
     },
     methods: {
         // Callback method for saving requested data asynchronously
