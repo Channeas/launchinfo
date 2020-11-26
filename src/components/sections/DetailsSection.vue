@@ -97,10 +97,12 @@ export default {
 @media (max-width: 650px) {
     .detailsList {
         grid-template-columns: 1fr;
+        overflow: hidden;
     }
 
     .detailsList td {
         padding: 15px 0;
+        width: calc(100vw - 97px);
     }
 
     .detailsList tr td:first-of-type {
@@ -111,6 +113,18 @@ export default {
     .detailsList tr td:last-of-type {
         text-align: left;
         padding-top: 10px;
+    }
+}
+
+@media (max-width: 550px) {
+    .detailsList td {
+        width: calc(100vw - 77px);
+    }
+}
+
+@media (max-width: 400px) {
+    .detailsList td {
+        width: calc(100vw - 57px);
     }
 }
 </style>
