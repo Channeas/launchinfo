@@ -169,13 +169,17 @@ export default {
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
     .headerSection .subSection:first-of-type {
         margin-top: 0;
     }
 
     .headerImage {
         border-radius: 0;
+    }
+
+    .subSection {
+        text-align: center;
     }
 }
 
