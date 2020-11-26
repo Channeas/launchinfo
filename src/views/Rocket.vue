@@ -32,7 +32,7 @@
 
                 <!-- Content that is displayed if the rocket was NOT found -->
                 <p class="generalTitle" v-if="state == 'error'">
-                    Rocket not found
+                    {{ errorMessage }}
                 </p>
             </div>
         </ViewBody>
@@ -66,6 +66,7 @@ export default {
                     listData: []
                 }
             },
+            errorMessage: "Launch not found",
             state: "loading"
         };
     },
@@ -115,17 +116,20 @@ export default {
             // Update the state
             this.state = "error";
 
-            // Update the page title to display an error message
+            // Display the correct error message
             switch (errorCode) {
                 case 404 || 500:
-                    document.title = "Rocket not found";
+                    this.errorMessage = "Rocket not found";
                     break;
                 case 429:
-                    document.title = "API limit exceeded. Sorry";
+                    this.errorMessage = "API limit exceeded. Sorry";
                     break;
                 default:
-                    document.title = "Unknown error";
+                    this.errorMessage = "Unknown error";
             }
+
+            // Update the page title
+            document.title = this.errorMessage;
         }
     },
     computed: {
