@@ -186,4 +186,11 @@ export default {
         margin-bottom: 0;
     }
 }
+
+@media (max-width: 400px) {
+    /* Make sure the header image takes up the full page width */
+    .headerSection .subSection:first-of-type {
+        margin: -20px;
+    }
+}
 </style>
