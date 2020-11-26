@@ -7,6 +7,15 @@ export default function getRockets(route, callback) {
 
     // Callback used for parsing data
     function handleData(rawData) {
+        // Make sure the page is within range
+        if (rawData.results.length == 0 && route.query.page != 1) {
+            // If not, calculate the max page
+            const maxPage = Math.ceil(rawData.count / itemsPerPage);
+
+            // Then redirect the user to the max page
+            window.location.href = `?page=${maxPage}`;
+        }
+
         // Parse the page data
         const pageData = {
             itemCount: rawData.count,
@@ -29,6 +38,13 @@ export default function getRockets(route, callback) {
 
         // Return the data using the callback that was sent by the view
         callback({ items: rockets, pageData: pageData });
+    }
+
+    // Make sure that the user is on at least page 1
+    if (route.query.page < 1) {
+        // If not, send the user to the first page
+        window.location.href = "?page=1";
+        return;
     }
 
     // Take into account what page the user is on

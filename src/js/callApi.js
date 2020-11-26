@@ -9,7 +9,6 @@ export default function callApi(path, callback, errorCallback) {
                 const data = response.json();
                 return data;
             } else {
-                console.log(response);
                 // If the response failed, call the error callback sent by the view
                 if (errorCallback) {
                     errorCallback(response.status);
