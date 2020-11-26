@@ -17,12 +17,6 @@
 
 <script>
 export default {
-    computed: {
-        link: function() {
-            return `/agencies?page=${this.pageNumber}`;
-        }
-    },
-
     name: "PageNavButton",
 
     props: {
