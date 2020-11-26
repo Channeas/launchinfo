@@ -8,7 +8,8 @@
 
         <!-- Text section -->
         <div class="subSection">
-            <p class="generalTitle">{{ header.title }}</p>
+            <!-- Shouldn't this be h1 for SEO purposes? -->
+            <h1 class="generalTitle">{{ header.title }}</h1>
             <p
                 class="generalSubTitle headerSubTitle"
                 v-if="header.subTitleAsCountdown"

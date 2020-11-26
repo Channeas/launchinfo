@@ -2,7 +2,7 @@
 <template>
     <div class="error404">
         <ViewBody>
-            <p class="errorTitle">404 - sorry, but we can't find that page</p>
+            <h1 class="errorTitle">404 - sorry, but we can't find that page</h1>
             <!-- Button that redirects the user to the previous page -->
             <button class="errorButton" @click="$router.go(-1)">Go back</button>
         </ViewBody>

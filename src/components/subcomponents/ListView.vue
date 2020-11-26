@@ -1,7 +1,7 @@
 <!-- Component used on the views displaying lists giving a uniform title -->
 <template>
     <div class="listView">
-        <p class="listName">{{ title }}</p>
+        <h1 class="listName">{{ title }}</h1>
         <slot></slot>
     </div>
 </template>
