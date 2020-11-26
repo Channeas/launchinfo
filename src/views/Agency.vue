@@ -29,6 +29,9 @@
                     class="launchList"
                     v-if="state == 'loaded'"
                 ></List>
+                <p class="noLaunches" v-if="launches.length == 0">
+                    No upcoming launches
+                </p>
 
                 <!-- Content that is displayed if the agency was NOT found -->
                 <p class="generalTitle" v-if="state == 'error'">
@@ -169,6 +172,10 @@ export default {
 .agency .headerImage {
     background-size: contain;
     background-position: center;
+}
+
+.noLaunches {
+    margin: 0;
 }
 
 /* List responsiveness */

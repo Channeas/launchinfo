@@ -29,6 +29,9 @@
                     class="launchList"
                     v-if="state == 'loaded'"
                 ></List>
+                <p class="noLaunches" v-if="launches.length == 0">
+                    No upcoming launches
+                </p>
 
                 <!-- Content that is displayed if the rocket was NOT found -->
                 <p class="generalTitle" v-if="state == 'error'">
@@ -164,6 +167,10 @@ export default {
 
 .launchList {
     grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr) 140px;
+}
+
+.noLaunches {
+    margin: 0;
 }
 
 /* List responsiveness */
