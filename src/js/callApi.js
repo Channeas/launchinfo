@@ -9,9 +9,10 @@ export default function callApi(path, callback, errorCallback) {
                 const data = response.json();
                 return data;
             } else {
+                console.log(response);
                 // If the response failed, call the error callback sent by the view
                 if (errorCallback) {
-                    errorCallback();
+                    errorCallback(response.status);
                 }
                 return null;
             }
@@ -24,5 +25,6 @@ export default function callApi(path, callback, errorCallback) {
         })
         .catch(error => {
             console.log("Error retrieving data from the API:", error);
+            errorCallback(error.status);
         });
 }

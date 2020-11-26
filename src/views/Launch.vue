@@ -17,7 +17,7 @@
                 ></DetailsSection>
 
                 <!-- Content that is displayed if the launch was NOT found -->
-                <p class="generalTitle" v-if="state == '404'">
+                <p class="generalTitle" v-if="state == 'error'">
                     Launch not found
                 </p>
             </div>
@@ -53,7 +53,7 @@ export default {
     },
     created() {
         // Request the data from the API (is returned using the saveData method as a callback)
-        this.getDataFromApi(this.$route, this.saveData, this.display404);
+        this.getDataFromApi(this.$route, this.saveData, this.displayError);
     },
     methods: {
         // Method for saving requested data asynchronously
@@ -73,12 +73,21 @@ export default {
         },
 
         // Method for displaying that the selected rocket was not found
-        display404() {
+        displayError(errorCode) {
             // Update the state
-            this.state = "404";
+            this.state = "error";
 
-            // Update the page title
-            document.title = "Launch not found";
+            // Update the page title to display an error message
+            switch (errorCode) {
+                case 404 || 500:
+                    document.title = "Launch not found";
+                    break;
+                case 429:
+                    document.title = "API limit exceeded. Sorry";
+                    break;
+                default:
+                    document.title = "Unknown error";
+            }
         }
     }
 };
