@@ -221,10 +221,4 @@ export default {
         border-bottom: 0;
     }
 }
-
-/* @media (max-width: 800px) {
-    .agency .headerSection .subSection:first-of-type {
-        margin: 0;
-    }
-} */
 </style>
