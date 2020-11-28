@@ -70,7 +70,7 @@ export default {
 .agencies .imageSection {
     background-size: contain;
     background-position: center;
-    margin: 20px;
+    margin: 25px;
     margin-bottom: 0;
 }
 
