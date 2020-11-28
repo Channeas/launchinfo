@@ -169,6 +169,11 @@ export default {
     grid-template-columns: minmax(0, 1fr) 160px 160px minmax(0, 1fr) 140px;
 }
 
+/* Make sure the agency logo has whitespace around it */
+.agency .headerSection .subSection:first-of-type {
+    margin: 0;
+}
+
 .agency .headerImage {
     background-size: contain;
     background-position: center;
@@ -216,4 +221,10 @@ export default {
         border-bottom: 0;
     }
 }
+
+/* @media (max-width: 800px) {
+    .agency .headerSection .subSection:first-of-type {
+        margin: 0;
+    }
+} */
 </style>
