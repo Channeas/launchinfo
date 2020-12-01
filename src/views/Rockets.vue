@@ -14,7 +14,7 @@
 // Import the components used
 import ViewBody from "@/components/sections/ViewBody.vue";
 import ImageList from "@/components/sections/ImageList.vue";
-import ListView from "@/components/subcomponents/ListView.vue";
+import ListView from "@/components/views/ListView.vue";
 import PageNavigation from "@/components/subcomponents/PageNavigation.vue";
 
 export default {

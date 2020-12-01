@@ -13,7 +13,7 @@
 <script>
 // Import the components used
 import ViewBody from "@/components/sections/ViewBody.vue";
-import ListView from "@/components/subcomponents/ListView.vue";
+import ListView from "@/components/views/ListView.vue";
 import ImageList from "@/components/sections/ImageList.vue";
 import PageNavigation from "@/components/subcomponents/PageNavigation.vue";
 
