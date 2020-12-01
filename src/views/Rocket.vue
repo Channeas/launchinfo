@@ -29,7 +29,10 @@
                     class="launchList"
                     v-if="state == 'loaded'"
                 ></List>
-                <p class="noLaunches" v-if="launches.length == 0">
+                <p
+                    class="noLaunches"
+                    v-if="launches.length == 0 && this.state == 'loaded'"
+                >
                     No upcoming launches
                 </p>
 
