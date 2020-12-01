@@ -3,15 +3,39 @@
     <div class="listView">
         <h1 class="listName">{{ title }}</h1>
         <slot></slot>
+
+        <!-- Potentially display an error message -->
+        <p v-if="errorCode">
+            {{ errorMessage }}
+        </p>
     </div>
 </template>
 
 <script>
 export default {
+    computed: {
+        errorMessage: function() {
+            // Make sure there is an error message
+            if (!this.errorCode) {
+                return "";
+            }
+
+            // Display the correct error message
+            switch (this.errorCode) {
+                case 429:
+                    return "API limit exceeded. Sorry";
+                default:
+                    return "Unknown error";
+            }
+        }
+    },
     name: "ListView",
     props: {
         title: {
             type: String,
+            required: true
+        },
+        errorCode: {
             required: true
         }
     }

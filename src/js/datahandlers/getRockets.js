@@ -2,7 +2,7 @@
 import callApi from "../callApi.js";
 
 // Function that returns a list of rockets
-export default function getRockets(route, callback) {
+export default function getRockets(route, callback, errorCallback) {
     const itemsPerPage = 12;
 
     // Callback used for parsing data
@@ -56,6 +56,7 @@ export default function getRockets(route, callback) {
     // Get the data on rockets from the API
     callApi(
         `config/launcher/?limit=12&offset=${offset}&active=true`,
-        handleData
+        handleData,
+        errorCallback
     );
 }

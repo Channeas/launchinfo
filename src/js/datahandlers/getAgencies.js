@@ -2,7 +2,7 @@
 import callApi from "../callApi.js";
 
 // Function that returns a list of upcoming launches via a callback
-export default function getAgencies(route, callback) {
+export default function getAgencies(route, callback, errorCallback) {
     const itemsPerPage = 12;
 
     // Second callback, that parses the returned data and then enters it to the view's callback
@@ -63,6 +63,7 @@ export default function getAgencies(route, callback) {
     // Get the data on upcoming launches from the API
     callApi(
         `agencies/?limit=12&offset=${offset}&mode=detailed`, // &featured=true
-        handleData
+        handleData,
+        errorCallback
     );
 }

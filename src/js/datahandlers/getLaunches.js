@@ -5,7 +5,7 @@ import callApi from "../callApi.js";
 import parseDate from "../functions/parseDate.js";
 
 // Function that returns a list of upcoming launches via a callback
-export default function getLaunches(route, callback) {
+export default function getLaunches(route, callback, errorCallback) {
     const itemsPerPage = 12;
 
     // Second callback, that parses the returned data and then enters it to the view's callback
@@ -73,6 +73,7 @@ export default function getLaunches(route, callback) {
     // Get the data on upcoming launches from the API
     callApi(
         `launch/upcoming/?limit=12&offset=${offset}&mode=detailed`,
-        handleData
+        handleData,
+        errorCallback
     );
 }

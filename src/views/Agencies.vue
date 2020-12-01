@@ -2,7 +2,7 @@
 <template>
     <div class="agencies">
         <ViewBody>
-            <ListView :title="title">
+            <ListView :title="title" :errorCode="errorCode">
                 <ImageList :contentList="viewData"></ImageList>
             </ListView>
             <PageNavigation :pageData="pageData"></PageNavigation>
@@ -27,6 +27,7 @@ export default {
     },
     data: function() {
         return {
+            errorCode: null,
             title: "Agencies",
             viewData: {
                 items: [],
@@ -45,7 +46,7 @@ export default {
     },
     created() {
         // Request the data from the datamanager (is returned using the saveData method as a callback)
-        this.getDataFromApi(this.$route, this.saveData);
+        this.getDataFromApi(this.$route, this.saveData, this.displayError);
 
         // Update the page title
         document.title = "Agencies";
@@ -60,6 +61,14 @@ export default {
         saveData(data) {
             this.viewData.items = data.items;
             this.pageData = data.pageData;
+
+            // Make sure to reset the error message
+            this.errorCode = null;
+        },
+
+        // Error callback for displaying an error
+        displayError(errorCode) {
+            this.errorCode = errorCode;
         }
     }
 };

@@ -12,17 +12,17 @@ export default function getDataFromApi(route, callback, errorCallback) {
     // Determine where the call for data comes from and call the appropriate function
     switch (route.name) {
         case "Launches landing": // The landing (root /) page
-            return getLaunches(route, callback);
+            return getLaunches(route, callback, errorCallback);
         case "Launches":
-            return getLaunches(route, callback);
+            return getLaunches(route, callback, errorCallback);
         case "Launch":
             return getSingleLaunch(route, callback, errorCallback);
         case "Rockets":
-            return getRockets(route, callback);
+            return getRockets(route, callback, errorCallback);
         case "Rocket":
             return getSingleRocket(route, callback, errorCallback);
         case "Agencies":
-            return getAgencies(route, callback);
+            return getAgencies(route, callback, errorCallback);
         case "Agency":
             return getSingleAgency(route, callback, errorCallback);
     }
