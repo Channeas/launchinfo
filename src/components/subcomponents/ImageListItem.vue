@@ -12,7 +12,7 @@
             <p class="subTitle" v-if="content.subTitleAsCountdown">
                 {{ timeCountDown }}
             </p>
-            <p class="subTitle" v-else>{{ content.subTitle }}</p>
+            <p class="subTitle" v-else>{{ content.subTitle || "&nbsp;" }}</p>
             <p class="rocket">{{ content.description }}</p>
             <router-link :to="urlPrefix + content.id" class="cardButton">
                 Learn more
@@ -126,6 +126,7 @@ export default {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
+    min-height: 27px;
 }
 
 /* The smallest text on the card */
