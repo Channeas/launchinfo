@@ -5,7 +5,7 @@
         <slot></slot>
 
         <!-- Potentially display an error message -->
-        <p v-if="errorCode">
+        <p v-if="errorCode" class="errorMessage">
             {{ errorMessage }}
         </p>
     </div>
@@ -49,6 +49,11 @@ export default {
     color: var(--text-color);
     margin: 0;
     padding: 30px 0;
+}
+
+.errorMessage {
+    font-size: 26px;
+    font-weight: bold;
 }
 
 @media (max-width: 775px) {
