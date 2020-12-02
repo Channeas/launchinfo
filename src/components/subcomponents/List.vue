@@ -1,6 +1,7 @@
 <!-- Regular list component -->
 <template>
     <table class="list">
+        <!-- Row displaying column names -->
         <thead v-if="listHead">
             <tr>
                 <th v-for="(item, index) in listHead" :key="index">
@@ -8,6 +9,8 @@
                 </th>
             </tr>
         </thead>
+
+        <!-- Actual list content -->
         <tbody>
             <ListItem
                 v-for="(item, index) in listData"
@@ -31,14 +34,11 @@ export default {
     name: "List",
 
     props: {
-        listHead: {
-            type: Array,
+        buttonText: {
+            type: String,
             required: false
         },
-        listData: {
-            type: Array,
-            required: true
-        },
+
         /* Note that if the below parameter is true, .list grid-template-columns 
            requires an additional column, and the table header requires either a 
            description of the button, or an empty cell */
@@ -46,8 +46,14 @@ export default {
             type: Boolean,
             required: false
         },
-        buttonText: {
-            type: String,
+
+        listData: {
+            type: Array,
+            required: true
+        },
+
+        listHead: {
+            type: Array,
             required: false
         }
     }
