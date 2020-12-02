@@ -8,6 +8,8 @@
         >
             {{ item }}
         </td>
+
+        <!-- Potentially add a button to the row -->
         <td v-if="hasButton" class="buttonColumn">
             <router-link :to="rowItem.rowLink" class="listButton">{{
                 buttonText
@@ -21,17 +23,17 @@ export default {
     name: "ListItem",
 
     props: {
-        rowItem: {
-            type: Object,
-            required: true
+        buttonText: {
+            type: String,
+            required: false
         },
         hasButton: {
             type: Boolean,
             required: false
         },
-        buttonText: {
-            type: String,
-            required: false
+        rowItem: {
+            type: Object,
+            required: true
         }
     }
 };
