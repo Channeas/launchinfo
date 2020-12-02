@@ -9,7 +9,7 @@
             <span class="attributionDivider"> | </span>
             <span class="attributionSection"
                 >Data from
-                <a href="https://thespacedevs.com/"> The Space Devs </a></span
+                <a href="https://thespacedevs.com/">The Space Devs</a></span
             >
         </p>
     </div>
