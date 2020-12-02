@@ -1,4 +1,4 @@
-<!-- Component that displays a dataset as a list of card with images -->
+<!-- Component that displays a dataset as a list of cards with images -->
 <template>
     <div class="imageList">
         <ImageListItem
@@ -50,11 +50,13 @@ export default {
 <style>
 .imageList {
     display: grid;
+    /* Determines the amount of cards per row */
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 45px;
 }
 
 @media (max-width: 1180px) {
+    /* Decrease the amount of cards per row */
     .imageList {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -81,6 +83,7 @@ export default {
 }
 
 @media (max-width: 775px) {
+    /* Set it so that only one card is displayed per row */
     .imageList {
         grid-template-columns: minmax(0, 1fr);
         text-align: center;
