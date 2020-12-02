@@ -1,19 +1,25 @@
 <!-- Component that is the basis for the ImageList.vue component -->
 <template>
     <div class="imageListItem">
+        <!-- Section containing the image -->
         <div class="imageSection" :style="imageStyle">
             <img :src="content.imageSrc" :alt="imageAlt" />
         </div>
+
+        <!-- Section containing the text -->
         <div class="textSection">
             <p class="location">
                 {{ content.imageTitle }}
             </p>
             <p class="title">{{ content.title }}</p>
+
+            <!-- Tags that determine whether or not to display a countdown -->
             <p class="subTitle" v-if="content.subTitleAsCountdown">
                 {{ timeCountDown }}
             </p>
             <p class="subTitle" v-else>{{ content.subTitle || "&nbsp;" }}</p>
-            <p class="rocket">{{ content.description }}</p>
+
+            <p class="description">{{ content.description }}</p>
             <router-link :to="urlPrefix + content.id" class="cardButton">
                 Learn more
             </router-link>
@@ -130,7 +136,7 @@ export default {
 }
 
 /* The smallest text on the card */
-.rocket {
+.description {
     margin: 15px 0;
     white-space: nowrap;
     overflow: hidden;
