@@ -53,17 +53,7 @@ export default {
         DetailsSection,
         List
     },
-    data: function() {
-        return {
-            viewData: {
-                header: {},
-                details: [],
-                upcomingLaunches: {}
-            },
-            errorMessage: "Launch not found",
-            state: "loading"
-        };
-    },
+
     computed: {
         launches: function() {
             // Make sure there are launches
@@ -81,10 +71,24 @@ export default {
             return launches;
         }
     },
+
     created() {
         // Request the data from the API (is returned using the saveData method as a callback)
         this.getDataFromApi(this.$route, this.saveData, this.displayError);
     },
+
+    data: function() {
+        return {
+            viewData: {
+                header: {},
+                details: [],
+                upcomingLaunches: {}
+            },
+            errorMessage: "Launch not found",
+            state: "loading"
+        };
+    },
+
     methods: {
         // Method for saving requested data asynchronously
         saveData(data) {
@@ -138,7 +142,9 @@ export default {
             document.title = this.errorMessage;
         }
     },
+
     name: "InfoView",
+
     props: {
         getDataFromApi: {
             required: true
