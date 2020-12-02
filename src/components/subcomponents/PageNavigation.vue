@@ -26,7 +26,6 @@
             :href="`?page=${currentPage + 1}`"
             ><img src="../../assets/chevron-right.svg"
         /></a>
-
         <div class="stepButton" v-else>
             <img src="../../assets/chevron-right.svg" />
         </div>
@@ -122,6 +121,17 @@ export default {
     },
 
     methods: {
+        // Method that calculates how many buttons to show depending on screen width
+        calculateButtonCount() {
+            if (window.innerWidth < 450) {
+                this.buttonCount = 1;
+            } else if (window.innerWidth < 700) {
+                this.buttonCount = 2;
+            } else {
+                this.buttonCount = 3;
+            }
+        },
+
         createPages(startPage, endPage) {
             // Loop through the range, creating one page for each number
             const pages = [];
@@ -137,16 +147,6 @@ export default {
             }
 
             return pages;
-        },
-        // Method that calculates how many buttons to show depending on screen width
-        calculateButtonCount() {
-            if (window.innerWidth < 450) {
-                this.buttonCount = 1;
-            } else if (window.innerWidth < 700) {
-                this.buttonCount = 2;
-            } else {
-                this.buttonCount = 3;
-            }
         }
     },
 
@@ -167,6 +167,7 @@ export default {
     margin-top: 50px;
 }
 
+/* The actual buttons for navigating between pages */
 .stepButton {
     height: 40px;
     padding: 0 15px;
