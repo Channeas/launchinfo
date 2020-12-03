@@ -61,11 +61,20 @@ export default {
                 return [];
             }
 
+            // Determine which index should contain a countdown (default Rocket view)
+            var countdownIndex = 1;
+            if (this.$route.name == "Agency") {
+                countdownIndex = 2;
+            }
+
             // Edit the array of launches to contain a countdown instead of a timestamp
             const launches = [...this.viewData.upcomingLaunches.listData];
             for (const launch of launches) {
-                const launchTime = launch.rowData[1];
-                launch.rowData[1] = getCountdown(launchTime, Date.now());
+                const launchTime = launch.rowData[countdownIndex];
+                launch.rowData[countdownIndex] = getCountdown(
+                    launchTime,
+                    Date.now()
+                );
             }
 
             return launches;
