@@ -7,6 +7,13 @@ export default function getCountdown(eventTime, currentTime, useSeconds) {
 
     // Calculate the difference between the two times in milliseconds
     var difference = eventTime - currentTime;
+    var sign = "-";
+
+    // For times that have already passed
+    if (eventTime < currentTime) {
+        difference = currentTime - eventTime;
+        sign = "+";
+    }
 
     // Calculate the day
     var days = Math.floor(difference / dayInMilliseconds);
@@ -23,9 +30,9 @@ export default function getCountdown(eventTime, currentTime, useSeconds) {
     // Potentially calculate the second
     if (useSeconds) {
         var seconds = Math.floor(difference / 1000);
-        return `T- ${days}D ${hours}H ${minutes}M ${seconds}S`;
+        return `T${sign} ${days}D ${hours}H ${minutes}M ${seconds}S`;
     }
 
     // Return the time left in countdown format
-    return `T- ${days}D ${hours}H ${minutes}M`;
+    return `T${sign} ${days}D ${hours}H ${minutes}M`;
 }
