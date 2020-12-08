@@ -13,7 +13,9 @@ phases:
   post_build:
     commands:
       # Clear the deployment bucket to make sure all files are current
-      - aws s3 rm --recursive "s3://${OUTPUT_BUCKET}/"
+      - aws s3 rm --recursive "s3://${OUTPUT_BUCKET}/css/"
+      - aws s3 rm --recursive "s3://${OUTPUT_BUCKET}/img/"
+      - aws s3 rm --recursive "s3://${OUTPUT_BUCKET}/js/"
 artifacts:
   files:
     - "**/*"
