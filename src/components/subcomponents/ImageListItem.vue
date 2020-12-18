@@ -19,6 +19,17 @@
             </p>
             <p class="subTitle" v-else>{{ content.subTitle || "&nbsp;" }}</p>
 
+            <!-- Potentially display a launchdate -->
+            <p
+                class="description"
+                v-if="
+                    $route.name == 'Launches' ||
+                        $route.name == 'Launches landing'
+                "
+            >
+                {{ content.launchDate }}
+            </p>
+
             <p class="description">{{ content.description }}</p>
             <router-link :to="urlPrefix + content.id" class="cardButton">
                 Learn more
@@ -140,6 +151,10 @@ export default {
     margin: 15px 0;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.description:nth-child(1) {
+    margin-top: 0;
 }
 
 /* The button leading to the individual page */

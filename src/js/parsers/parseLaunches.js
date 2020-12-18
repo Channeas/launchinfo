@@ -17,7 +17,11 @@ export default function parseLaunches(rawData) {
             subTitle: parseDate(launch.window_start),
             subTitleAsCountdown: true,
             id: launch.id,
-            type: "Launch"
+            type: "Launch",
+            launchDate: `Launching ${launch.window_start.substring(
+                0,
+                launch.window_start.indexOf("T")
+            )}`
         };
 
         // Add the launch provider and rocket name (potentially use the abbreviation of the launch provider)
@@ -25,6 +29,7 @@ export default function parseLaunches(rawData) {
             launch.launch_service_provider.name.length < 15
                 ? launch.launch_service_provider.name
                 : launch.launch_service_provider.abbrev;
+
         res.description = `${providerName} | ${launch.rocket.configuration.full_name}`;
 
         // Push the parsed launch into the list of launches
