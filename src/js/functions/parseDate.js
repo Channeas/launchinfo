@@ -15,5 +15,5 @@ export default function parseDate(dateString) {
         minute = timeSplit[1],
         second = timeSplit[2];
 
-    return new Date(year, month, day, hour, minute, second).getTime();
+    return Date.UTC(year, month, day, hour, minute, second);
 }
