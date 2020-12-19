@@ -36,6 +36,7 @@ export default {
 /* Make sure the agency logo has whitespace around it */
 .agency .headerSection .subSection:first-of-type {
     margin: 0;
+    margin-top: 20px;
 }
 
 .agency .headerImage {
